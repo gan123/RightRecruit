@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20371D40-B7E5-4545-AC49-37FE5DCE0A9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RightRecruit.Domain</RootNamespace>
+    <AssemblyName>RightRecruit.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agency\AgencyBranding.cs" />
+    <Compile Include="Agency\AgencyPlan.cs" />
+    <Compile Include="Agency\Theme.cs" />
+    <Compile Include="Client\Client.cs" />
+    <Compile Include="Client\Position.cs" />
+    <Compile Include="Client\PositionLevel.cs" />
+    <Compile Include="Client\PositionStatus.cs" />
+    <Compile Include="Client\Revenue\RevenueModel.cs" />
+    <Compile Include="Common\Address.cs" />
+    <Compile Include="Agency\Agency.cs" />
+    <Compile Include="AttachmentReference.cs" />
+    <Compile Include="Common\Country.cs" />
+    <Compile Include="Common\Contact.cs" />
+    <Compile Include="DenormalizedReference.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="INamedDocument.cs" />
+    <Compile Include="Plan\AnnualPlan.cs" />
+    <Compile Include="Common\Currency.cs" />
+    <Compile Include="Plan\MonthlyPlan.cs" />
+    <Compile Include="Plan\Plan.cs" />
+    <Compile Include="Plan\ProductType.cs" />
+    <Compile Include="Plan\ThirtyDayTrialPlan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\State.cs" />
+    <Compile Include="User\Candidate.cs" />
+    <Compile Include="User\ClientUser.cs" />
+    <Compile Include="User\Recruiter.cs" />
+    <Compile Include="User\Target\Target.cs" />
+    <Compile Include="User\User.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
