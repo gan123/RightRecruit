@@ -201,6 +201,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="README.jQuery.vsdoc.txt" />
+    <Content Include="Scripts\libs\knockout.debug.js" />
+    <Content Include="Scripts\libs\knockout.js" />
+    <Content Include="Scripts\libs\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\libs\knockout.mapping-latest.js" />
     <Content Include="Scripts\libs\bundle.txt" />
     <Content Include="Scripts\libs\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\libs\jquery-1.7.1.js" />
