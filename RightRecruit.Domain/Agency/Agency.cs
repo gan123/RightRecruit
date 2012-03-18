@@ -9,7 +9,7 @@ namespace RightRecruit.Domain.Agency
     {
         public string Website { get; set; }
         public DenormalizedReference<Contact> Contact { get; set; }
-        public DenormalizedReference<Address> DenormalizedReference { get; set; }
+        public DenormalizedReference<Address> Address { get; set; }
         public List<DenormalizedReference<AgencyEarnings>> Earnings { get; set; }
     }
 

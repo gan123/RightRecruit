@@ -1,0 +1,28 @@
+﻿@{
+    Cassette.Views.Bundles.Reference("Scripts/libs");
+    Cassette.Views.Bundles.Reference("Content");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Cassette.Views.Bundles.RenderStylesheets()
+</head>
+<body>
+    @Cassette.Views.Bundles.RenderScripts()
+    <div class="main">
+        <div class="title left">
+            <h1>
+                RightRecruit | RightSide</h1>
+        </div>
+        <div class="right">
+            <span>@Html.ActionLink("Pricing", "Pricing", "Home", null, null)</span> | 
+            <span>@Html.ActionLink("Sign up", "Signup", "Signup", null, null)</span>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

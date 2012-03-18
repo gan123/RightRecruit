@@ -1,0 +1,30 @@
+﻿@model RightRecruit.Signup.Controllers.AgencyDto
+@{
+    ViewBag.Title = "Sign up";
+    ViewContext.FormContext = new FormContext();
+    Cassette.Views.Bundles.Reference("Scripts/Signup/signup.js");
+}
+<div class="outerCover">
+        <div class="headerLabel">Create your RightRecruit Account</div>
+            
+        @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
+        {
+                <div class="fieldLabel">@Html.LabelFor(p => p.CompanyName, "Company Name")</div>
+                <div class="fieldInput">@Html.TextBoxFor(p => p.CompanyName, new { @id = "company" })</div>
+                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.CompanyName)</div>
+                
+                <div class="fieldLabel">@Html.LabelFor(p => p.Website, "Website")</div>
+                <div class="fieldInput">@Html.TextBoxFor(p => p.Website, new { @id = "website" })</div>
+                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Website, "Please provide a website")</div>
+            
+                <div class="fieldLabel">@Html.LabelFor(p => p.Email, "Email")</div>
+                <div class="fieldInput">@Html.TextBoxFor(p => p.Email, new { @id = "email" })</div>
+                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Email, "Please provide a email")</div>
+            
+                <div class="fieldLabel">@Html.LabelFor(p => p.Phone, "Phone")</div>
+                <div class="fieldInput">@Html.TextBoxFor(p => p.Phone, new { @id = "phone" })</div>
+                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Phone, "Please provide a phone number")</div>
+            
+                <div class="fieldLabel"><input id="next" type="submit" value="Next"/></div>
+        }
+    </div>
