@@ -196,6 +196,7 @@
     <Content Include="Content\themes\metro\jquery-ui-1.8.18.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="README.jQuery.vsdoc.txt" />
+    <Content Include="Scripts\Home\home.js" />
     <Content Include="Scripts\libs\bundle.txt" />
     <Content Include="Scripts\libs\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\libs\jquery-1.7.1.js" />

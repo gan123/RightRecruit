@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AbstractController.cs" />
+    <Compile Include="Emailer\IEmailer.cs" />
     <Compile Include="Filters\RavenActionFilter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Infrastructure\CurrentUserProvider.cs" />

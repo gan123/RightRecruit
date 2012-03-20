@@ -34,6 +34,12 @@ namespace RightRecruit.Signup
             );
 
             routes.MapRoute(
+                "Mail", // Route name
+                "mail", // URL with parameters
+                new { controller = "Home", action = "Mail" } // Parameter defaults
+            );
+
+            routes.MapRoute(
               "Pricing", // Route name
               "pricing", // URL with parameters
               new { controller = "Home", action = "Pricing" } // Parameter defaults
