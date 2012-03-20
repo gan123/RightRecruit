@@ -49,6 +49,12 @@
     <Reference Include="Cassette.Web">
       <HintPath>..\packages\Cassette.Web.1.2.0\lib\net40\Cassette.Web.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -137,19 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CassetteConfiguration.cs" />
-    <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
-    <Compile Include="Filters\RavenActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\CurrentUserProvider.cs" />
-    <Compile Include="Infrastructure\ICurrentUserProvider.cs" />
-    <Compile Include="Infrastructure\Inflector.cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\RavenId.cs" />
-    <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +207,8 @@
     <Content Include="Scripts\libs\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\libs\jquery.validate.js" />
     <Content Include="Scripts\libs\jquery.validate.min.js" />
+    <Content Include="Scripts\libs\knockout.js" />
+    <Content Include="Scripts\libs\knockout.mapping-latest.js" />
     <Content Include="Scripts\libs\modernizr-1.7.js" />
     <Content Include="Scripts\libs\modernizr-1.7.min.js" />
     <Content Include="Scripts\Signup\signup.js" />
@@ -241,6 +241,10 @@
     <ProjectReference Include="..\RightRecruit.Domain\RightRecruit.Domain.csproj">
       <Project>{20371D40-B7E5-4545-AC49-37FE5DCE0A9E}</Project>
       <Name>RightRecruit.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightRecruit.Mvc.Infrastructure\RightRecruit.Mvc.Infrastructure.csproj">
+      <Project>{7D6A1D1C-867E-4A5C-BBC0-4CE223C911A5}</Project>
+      <Name>RightRecruit.Mvc.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

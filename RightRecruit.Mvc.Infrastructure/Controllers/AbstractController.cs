@@ -3,9 +3,9 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using RightRecruit.Domain;
-using RightRecruit.Signup.Infrastructure;
+using RightRecruit.Mvc.Infrastructure.Infrastructure;
 
-namespace RightRecruit.Signup.Controllers
+namespace RightRecruit.Mvc.Infrastructure.Controllers
 {
     public class AbstractController : Controller
     {

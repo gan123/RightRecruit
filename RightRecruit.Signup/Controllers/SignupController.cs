@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using RightRecruit.Domain.Agency;
 using RightRecruit.Domain.Common;
+using RightRecruit.Mvc.Infrastructure.Controllers;
 
 namespace RightRecruit.Signup.Controllers
 {

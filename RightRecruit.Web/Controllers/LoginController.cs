@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using RightRecruit.Mvc.Infrastructure.Controllers;
 
 namespace RightRecruit.Web.Controllers
 {

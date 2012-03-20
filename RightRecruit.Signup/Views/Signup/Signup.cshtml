@@ -9,22 +9,22 @@
             
         @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
         {
-                <div class="fieldLabel">@Html.LabelFor(p => p.CompanyName, "Company Name")</div>
+                <div class="fieldLabel">@Html.LabelFor(p => p.CompanyName, "COMPANY NAME:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.CompanyName, new { @id = "company" })</div>
-                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.CompanyName)</div>
+                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.CompanyName)</div>
                 
-                <div class="fieldLabel">@Html.LabelFor(p => p.Website, "Website")</div>
+                <div class="fieldLabel">@Html.LabelFor(p => p.Website, "WEBSITE:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.Website, new { @id = "website" })</div>
-                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Website, "Please provide a website")</div>
+                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Website, "Please provide a website")</div>
             
-                <div class="fieldLabel">@Html.LabelFor(p => p.Email, "Email")</div>
+                <div class="fieldLabel">@Html.LabelFor(p => p.Email, "EMAIL:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.Email, new { @id = "email" })</div>
-                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Email, "Please provide a email")</div>
+                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Email, "Please provide a email")</div>
             
-                <div class="fieldLabel">@Html.LabelFor(p => p.Phone, "Phone")</div>
+                <div class="fieldLabel">@Html.LabelFor(p => p.Phone, "PHONE:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.Phone, new { @id = "phone" })</div>
-                <div class="fieldLabel">@Html.ValidationMessageFor(p => p.Phone, "Please provide a phone number")</div>
+                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Phone, "Please provide a phone number")</div>
             
-                <div class="fieldLabel"><input id="next" type="submit" value="Next"/></div>
+                <div class="fieldLabel regular"><input id="next" type="submit" value="Create account"/></div>
         }
     </div>

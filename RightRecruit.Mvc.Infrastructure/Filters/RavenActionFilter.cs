@@ -5,10 +5,10 @@ using Raven.Abstractions.Json;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.MvcIntegration;
-using RightRecruit.Signup.Controllers;
-using RightRecruit.Signup.Infrastructure;
+using RightRecruit.Mvc.Infrastructure.Controllers;
+using RightRecruit.Mvc.Infrastructure.Infrastructure;
 
-namespace RightRecruit.Signup.Filters
+namespace RightRecruit.Mvc.Infrastructure.Filters
 {
     public class RavenActionFilter : ActionFilterAttribute
     {

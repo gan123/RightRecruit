@@ -2,7 +2,7 @@
 using Raven.Client;
 using Raven.Client.Document;
 
-namespace RightRecruit.Signup.Infrastructure
+namespace RightRecruit.Mvc.Infrastructure.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {

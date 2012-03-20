@@ -1,4 +1,4 @@
-﻿namespace RightRecruit.Signup.Infrastructure
+﻿namespace RightRecruit.Mvc.Infrastructure.Infrastructure
 {
     public class RavenId
     {

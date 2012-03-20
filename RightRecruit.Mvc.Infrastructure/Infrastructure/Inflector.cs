@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace RightRecruit.Signup.Infrastructure
+namespace RightRecruit.Mvc.Infrastructure.Infrastructure
 {
     public static class Inflector
     {
