@@ -8,8 +8,8 @@ namespace RightRecruit.Domain.Agency
     public class Agency : Entity
     {
         public string Website { get; set; }
-        public DenormalizedReference<Contact> Contact { get; set; }
-        public DenormalizedReference<Address> Address { get; set; }
+        public Contact Contact { get; set; }
+        public Address Address { get; set; }
         public List<DenormalizedReference<AgencyEarnings>> Earnings { get; set; }
     }
 

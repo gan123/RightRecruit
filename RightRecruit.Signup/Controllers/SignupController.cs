@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using RightRecruit.Domain.Agency;
 using RightRecruit.Domain.Common;
 using RightRecruit.Mvc.Infrastructure.Controllers;
+using RightRecruit.Signup.Models;
 
 namespace RightRecruit.Signup.Controllers
 {
@@ -27,19 +27,10 @@ namespace RightRecruit.Signup.Controllers
                 newAgency.Website = agency.Website;
                 newAgency.Name = agency.CompanyName;
                 newAgency.Contact = contact;
-                return View();
+                UnitOfWork.DocumentSession.Store(newAgency);
+                return RedirectToAction("Home", "Home");
             }
             return View();
         }
-    }
-
-    public class AgencyDto
-    {
-        [Required(ErrorMessage = "Can't leave this blank")]
-        public string CompanyName { get; set; }
-        public string Website { get; set; }
-        public string Phone { get; set; }
-        [Required]
-        public string Email { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace RightRecruit.Mvc.Infrastructure.Infrastructure
     {
         public IDocumentSession DocumentSession
         {
-            get { return (DocumentSession) HttpContext.Current.Session["UnitOfWOrk"]; }
+            get { return (DocumentSession) HttpContext.Current.Session[Globals.UnitOfWork]; }
         }
     }
 }

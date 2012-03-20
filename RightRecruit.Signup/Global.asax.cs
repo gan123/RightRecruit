@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Microsoft.Practices.ServiceLocation;
+using RightRecruit.Mvc.Infrastructure.Filters;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Plumbing;
 using RightRecruit.Signup.Controllers;
@@ -19,7 +20,7 @@ namespace RightRecruit.Signup
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            //filters.Add(new RavenActionFilter());
+            filters.Add(new RavenActionFilter());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -60,7 +61,6 @@ namespace RightRecruit.Signup
                 Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
                 Component.For<SignupController>().ImplementedBy<SignupController>().LifeStyle.Transient,
                 Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>(),
-                Component.For<ICurrentUserProvider>().ImplementedBy<CurrentUserProvider>(),
                 Component.For<HttpSessionStateBase>().LifeStyle.PerWebRequest
                 .UsingFactoryMethod(() => new HttpSessionStateWrapper(HttpContext.Current.Session)));
 

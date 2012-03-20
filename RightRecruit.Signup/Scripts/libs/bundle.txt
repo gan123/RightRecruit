@@ -4,3 +4,5 @@ jquery.unobtrusive-ajax.js
 jquery.validate.js
 jquery.validate.unobtrusive.js
 modernizr-1.7.js
+knockout.js
+knockout.mapping-latest.js

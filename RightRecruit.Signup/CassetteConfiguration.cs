@@ -29,7 +29,7 @@ namespace RightRecruit.Signup
                                                          {
                                                              Pattern = "*.css;*.less",
                                                              SearchOption = SearchOption.AllDirectories,
-                                                             Exclude = new Regex("metro-blue")
+                                                             Exclude = new Regex("base")
                                                          });
             // In production mode, all of ~/Content will be combined into a single bundle.
 

@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Filters\RavenActionFilter.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Infrastructure\CurrentUserProvider.cs" />
     <Compile Include="Infrastructure\ICurrentUserProvider.cs" />
     <Compile Include="Infrastructure\Inflector.cs" />

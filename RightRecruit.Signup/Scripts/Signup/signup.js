@@ -8,5 +8,9 @@ $(function () {
 
     $("#email").watermark('email@mycompany.com');
 
-    $("#next").button();
+    $("#next").button({
+        icons: {
+            primary: 'ui-icon-disk'
+        }
+    });
 });

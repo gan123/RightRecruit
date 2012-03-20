@@ -22,11 +22,11 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
                                 };
 
             DocumentStore.Initialize();
-            DocumentStore.Conventions.CustomizeJsonSerializer = jsonSerializer =>
-            {
-                jsonSerializer.Converters.Remove(jsonSerializer.Converters.Where(c =>
-                c.GetType() == typeof(JsonEnumConverter)).First());
-            };
+            //DocumentStore.Conventions.CustomizeJsonSerializer = jsonSerializer =>
+            //{
+            //    jsonSerializer.Converters.Remove(jsonSerializer.Converters.Where(c =>
+            //    c.GetType() == typeof(JsonEnumConverter)).First());
+            //};
 
             DocumentStore.Conventions.SaveEnumsAsIntegers = true;
             RavenProfiler.InitializeFor(DocumentStore);
@@ -38,7 +38,7 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
             if (sessionController == null) return;
             
             sessionController.UnitOfWork = new UnitOfWork();
-            sessionController.HttpSessionStateBase["UnitOrWork"] = DocumentStore.OpenSession();
+            sessionController.HttpSessionStateBase[Globals.UnitOfWork] = DocumentStore.OpenSession();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)

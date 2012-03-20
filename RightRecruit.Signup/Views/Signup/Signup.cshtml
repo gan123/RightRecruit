@@ -1,4 +1,4 @@
-﻿@model RightRecruit.Signup.Controllers.AgencyDto
+﻿@model RightRecruit.Signup.Models.AgencyDto
 @{
     ViewBag.Title = "Sign up";
     ViewContext.FormContext = new FormContext();
@@ -25,6 +25,6 @@
                 <div class="fieldInput">@Html.TextBoxFor(p => p.Phone, new { @id = "phone" })</div>
                 <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Phone, "Please provide a phone number")</div>
             
-                <div class="fieldLabel regular"><input id="next" type="submit" value="Create account"/></div>
+                <div class="fieldLabel regular"><button id="next" runat="server">Create Account</button></div>
         }
     </div>
