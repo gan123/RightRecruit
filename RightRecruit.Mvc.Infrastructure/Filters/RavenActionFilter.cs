@@ -5,6 +5,7 @@ using Raven.Abstractions.Json;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.MvcIntegration;
+using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 
@@ -18,15 +19,21 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
         {
             DocumentStore = new DocumentStore
                                 {
-                                    Url = ConfigurationManager.AppSettings["RavenServerUrl"]
+                                    Url = ConfigurationManager.AppSettings["RavenServerUrl"],
+                                    Conventions =
+                                        {
+                                            FindTypeTagName =  type =>
+                                                                   {
+                                                                       if (typeof(AgencyAdmin).IsAssignableFrom(type) || typeof(Recruiter).IsAssignableFrom(type)
+                                                                           || typeof(ClientUser).IsAssignableFrom(type) || typeof(Candidate).IsAssignableFrom(type))
+                                                                           return "Users";
+
+                                                                       return DocumentConvention.DefaultTypeTagName(type);
+                                                                   }
+                                        }
                                 };
 
             DocumentStore.Initialize();
-            //DocumentStore.Conventions.CustomizeJsonSerializer = jsonSerializer =>
-            //{
-            //    jsonSerializer.Converters.Remove(jsonSerializer.Converters.Where(c =>
-            //    c.GetType() == typeof(JsonEnumConverter)).First());
-            //};
 
             DocumentStore.Conventions.SaveEnumsAsIntegers = true;
             RavenProfiler.InitializeFor(DocumentStore);

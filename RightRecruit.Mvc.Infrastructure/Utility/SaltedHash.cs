@@ -1,69 +1,153 @@
 using System;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace RightRecruit.Mvc.Infrastructure.Utility
 {
     public sealed class SaltedHash
     {
-        public string Salt { get { return _salt; } }
-        public string Hash { get { return _hash; } }
+        HashAlgorithm HashProvider;
+        int SalthLength;
 
-        public static SaltedHash Create(string password)
+        /// <summary>
+        /// The constructor takes a HashAlgorithm as a parameter.
+        /// </summary>
+        /// <param name="HashAlgorithm">
+        /// A <see cref="HashAlgorithm"/> HashAlgorihm which is derived from HashAlgorithm. C# provides
+        /// the following classes: SHA1Managed,SHA256Managed, SHA384Managed, SHA512Managed and MD5CryptoServiceProvider
+        /// </param>
+
+        public SaltedHash(HashAlgorithm HashAlgorithm, int theSaltLength)
         {
-            var salt = CreateSalt();
-            var hash = CalculateHash(salt, password);
-            return new SaltedHash(salt, hash);
+            HashProvider = HashAlgorithm;
+            SalthLength = theSaltLength;
         }
 
-        public static SaltedHash Create(string salt, string hash)
+        /// <summary>
+        /// Default constructor which initialises the SaltedHash with the SHA256Managed algorithm
+        /// and a Salt of 4 bytes ( or 4*8 = 32 bits)
+        /// </summary>
+
+        public SaltedHash()
+            : this(new SHA256Managed(), 4)
         {
-            return new SaltedHash(salt, hash);
         }
 
-        public bool Verify(string password)
+        /// <summary>
+        /// The actual hash calculation is shared by both GetHashAndSalt and the VerifyHash functions
+        /// </summary>
+        /// <param name="Data">A byte array of the Data to Hash</param>
+        /// <param name="Salt">A byte array of the Salt to add to the Hash</param>
+        /// <returns>A byte array with the calculated hash</returns>
+
+        private byte[] ComputeHash(byte[] Data, byte[] Salt)
         {
-            var h = CalculateHash(_salt, password);
-            return _hash.Equals(h);
+            // Allocate memory to store both the Data and Salt together
+            byte[] DataAndSalt = new byte[Data.Length + SalthLength];
+
+            // Copy both the data and salt into the new array
+            Array.Copy(Data, DataAndSalt, Data.Length);
+            Array.Copy(Salt, 0, DataAndSalt, Data.Length, SalthLength);
+
+            // Calculate the hash
+            // Compute hash value of our plain text with appended salt.
+            return HashProvider.ComputeHash(DataAndSalt);
         }
 
-        private SaltedHash(string s, string h)
+        /// <summary>
+        /// Given a data block this routine returns both a Hash and a Salt
+        /// </summary>
+        /// <param name="Data">
+        /// A <see cref="System.Byte"/>byte array containing the data from which to derive the salt
+        /// </param>
+        /// <param name="Hash">
+        /// A <see cref="System.Byte"/>byte array which will contain the hash calculated
+        /// </param>
+        /// <param name="Salt">
+        /// A <see cref="System.Byte"/>byte array which will contain the salt generated
+        /// </param>
+
+        public void GetHashAndSalt(byte[] Data, out byte[] Hash, out byte[] Salt)
         {
-            _salt = s;
-            _hash = h;
+            // Allocate memory for the salt
+            Salt = new byte[SalthLength];
+
+            // Strong runtime pseudo-random number generator, on Windows uses CryptAPI
+            // on Unix /dev/urandom
+            RNGCryptoServiceProvider random = new RNGCryptoServiceProvider();
+
+            // Create a random salt
+            random.GetNonZeroBytes(Salt);
+
+            // Compute hash value of our data with the salt.
+            Hash = ComputeHash(Data, Salt);
         }
 
-        private static string CreateSalt()
+        /// <summary>
+        /// The routine provides a wrapper around the GetHashAndSalt function providing conversion
+        /// from the required byte arrays to strings. Both the Hash and Salt are returned as Base-64 encoded strings.
+        /// </summary>
+        /// <param name="Data">
+        /// A <see cref="System.String"/> string containing the data to hash
+        /// </param>
+        /// <param name="Hash">
+        /// A <see cref="System.String"/> base64 encoded string containing the generated hash
+        /// </param>
+        /// <param name="Salt">
+        /// A <see cref="System.String"/> base64 encoded string containing the generated salt
+        /// </param>
+
+        public void GetHashAndSaltString(string Data, out string Hash, out string Salt)
         {
-            var r = CreateRandomBytes(SaltLength);
-            return Convert.ToBase64String(r);
+            byte[] HashOut;
+            byte[] SaltOut;
+
+            // Obtain the Hash and Salt for the given string
+            GetHashAndSalt(Encoding.UTF8.GetBytes(Data), out HashOut, out SaltOut);
+
+            // Transform the byte[] to Base-64 encoded strings
+            Hash = Convert.ToBase64String(HashOut);
+            Salt = Convert.ToBase64String(SaltOut);
         }
 
-        private static byte[] CreateRandomBytes(int len)
+        /// <summary>
+        /// This routine verifies whether the data generates the same hash as we had stored previously
+        /// </summary>
+        /// <param name="Data">The data to verify </param>
+        /// <param name="Hash">The hash we had stored previously</param>
+        /// <param name="Salt">The salt we had stored previously</param>
+        /// <returns>True on a succesfull match</returns>
+
+        public bool VerifyHash(byte[] Data, byte[] Hash, byte[] Salt)
         {
-            var r = new byte[len];
-            new RNGCryptoServiceProvider().GetBytes(r);
-            return r;
+            byte[] NewHash = ComputeHash(Data, Salt);
+
+            //  No easy array comparison in C# -- we do the legwork
+            if (NewHash.Length != Hash.Length) return false;
+
+            for (int Lp = 0; Lp < Hash.Length; Lp++)
+                if (!Hash[Lp].Equals(NewHash[Lp]))
+                    return false;
+
+            return true;
         }
 
-        private static string CalculateHash(string salt, string password)
+        /// <summary>
+        /// This routine provides a wrapper around VerifyHash converting the strings containing the
+        /// data, hash and salt into byte arrays before calling VerifyHash.
+        /// </summary>
+        /// <param name="Data">A UTF-8 encoded string containing the data to verify</param>
+        /// <param name="Hash">A base-64 encoded string containing the previously stored hash</param>
+        /// <param name="Salt">A base-64 encoded string containing the previously stored salt</param>
+        /// <returns></returns>
+
+        public bool VerifyHashString(string Data, string Hash, string Salt)
         {
-            var data = ToByteArray(salt + password);
-            var hash = CalculateHash(data);
-            return Convert.ToBase64String(hash);
+            byte[] HashToVerify = Convert.FromBase64String(Hash);
+            byte[] SaltToVerify = Convert.FromBase64String(Salt);
+            byte[] DataToVerify = Encoding.UTF8.GetBytes(Data);
+            return VerifyHash(DataToVerify, HashToVerify, SaltToVerify);
         }
 
-        private static byte[] CalculateHash(byte[] data)
-        {
-            return new SHA1CryptoServiceProvider().ComputeHash(data);
-        }
-
-        private static byte[] ToByteArray(string s)
-        {
-            return System.Text.Encoding.UTF8.GetBytes(s);
-        }
-
-        private readonly string _salt;
-        private readonly string _hash;
-        private const int SaltLength = 6;
     }
 }

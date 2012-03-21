@@ -7,6 +7,6 @@ namespace RightRecruit.Domain.User
         public Contact Contact { get; set; }
         public Address Address { get; set; }
         public string Login { get; set; }
-        public byte[] HashedPassword { get; set; }
+        public Password HashedPassword { get; set; }
     }
 }

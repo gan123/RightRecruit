@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Microsoft.Practices.ServiceLocation;
+using RightRecruit.Mvc.Infrastructure.Emailer;
 using RightRecruit.Mvc.Infrastructure.Filters;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Plumbing;
@@ -67,6 +68,7 @@ namespace RightRecruit.Signup
                 Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
                 Component.For<SignupController>().ImplementedBy<SignupController>().LifeStyle.Transient,
                 Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>(),
+                Component.For<IEmailer>().ImplementedBy<Emailer>(),
                 Component.For<HttpSessionStateBase>().LifeStyle.PerWebRequest
                 .UsingFactoryMethod(() => new HttpSessionStateWrapper(HttpContext.Current.Session)));
 
