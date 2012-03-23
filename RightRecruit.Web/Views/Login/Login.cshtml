@@ -1,16 +1,17 @@
 ﻿@model RightRecruit.Web.Models.LoginDto
 @{
-    Cassette.Views.Bundles.Reference("Scripts/login");
+    ViewBag.Title = "Login";
+    ViewContext.FormContext = new FormContext();
+    Cassette.Views.Bundles.Reference("Scripts/login/login.js");
 }
 <div class="outerBorder">
-    <div class="loginTitle">
-        Login</div>
-    @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
+    <div class="loginTitle">Login</div>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
     {
-        <div class="fieldInput">@Html.TextBoxFor(p => p.Login, new { @id = "login" })</div>
-        <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Login)</div>
+        <div class="fieldInput">@Html.TextBoxFor(p => p.UserName, new { @id = "login" })</div>
+        <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.UserName)</div>
         
-        <div class="fieldInput">@Html.TextBoxFor(p => p.Password, new { @id = "password" })</div>
+        <div class="fieldInput">@Html.PasswordFor(p => p.Password, new { @id = "password" })</div>
         <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Password)</div>
         
         <div class="fieldLabel">@Html.CheckBoxFor(p => p.RememberMe, new { @id = "remember"})Remember me

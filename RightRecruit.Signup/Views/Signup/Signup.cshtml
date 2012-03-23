@@ -1,7 +1,7 @@
 ﻿@model RightRecruit.Signup.Models.AgencyDto
 @{
     ViewBag.Title = "Sign up";
-    ViewContext.FormContext = new FormContext();
+    ViewContext.FormContext = new System.Web.Mvc.FormContext();
     Cassette.Views.Bundles.Reference("Scripts/Signup/signup.js");
 }
 <div class="outerCover">
@@ -12,6 +12,10 @@
                 <div class="fieldLabel">@Html.LabelFor(p => p.CompanyName, "COMPANY NAME:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.CompanyName, new { @id = "company" })</div>
                 <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.CompanyName)</div>
+            
+                <div class="fieldLabel">@Html.LabelFor(p => p.AdminId, "ADMIN ID:")<em>*</em></div>
+                <div class="fieldInput">@Html.TextBoxFor(p => p.AdminId, new { @id = "adminId" })</div>
+                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.AdminId)</div>
                 
                 <div class="fieldLabel">@Html.LabelFor(p => p.Website, "WEBSITE:")<em>*</em></div>
                 <div class="fieldInput">@Html.TextBoxFor(p => p.Website, new { @id = "website" })</div>

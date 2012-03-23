@@ -7,7 +7,7 @@ namespace RightRecruit.Mvc.Infrastructure.Infrastructure
     {
         public User CurrentUser
         {
-            get { return (User) HttpContext.Current.Session["CurrentUser"]; }
+            get { return (User) HttpContext.Current.Session[Globals.CurrentUser]; }
         }
     }
 }

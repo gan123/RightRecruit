@@ -38,10 +38,10 @@ namespace RightRecruit.Signup.Controllers
                 UnitOfWork.DocumentSession.Store(newAgency);
 
                 var adminUser = new AgencyAdmin();
-                adminUser.Name = "Admin";
+                adminUser.Name = agency.AdminId;
                 adminUser.Contact = newAgency.Contact;
                 adminUser.Address = newAgency.Address;
-                adminUser.Login = "admin";
+                adminUser.Login = agency.AdminId;
                 var password = RandomPassword.Generate(8);
                 string salt;
                 string hash;
