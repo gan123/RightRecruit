@@ -3,6 +3,7 @@ using RightRecruit.Domain.Agency;
 using RightRecruit.Domain.Common;
 using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure.Controllers;
+using RightRecruit.Mvc.Infrastructure.Emailer;
 using RightRecruit.Mvc.Infrastructure.Utility;
 using RightRecruit.Signup.Models;
 
@@ -10,8 +11,13 @@ namespace RightRecruit.Signup.Controllers
 {
     public class SignupController : AbstractController
     {
-        //
-        // GET: /Signup/
+        private readonly IEmailer _emailer;
+
+        public SignupController(IEmailer emailer)
+        {
+            _emailer = emailer;
+        }
+
         [HttpGet]
         public ActionResult Signup()
         {
@@ -44,7 +50,9 @@ namespace RightRecruit.Signup.Controllers
                 adminUser.Agency = newAgency;
                 UnitOfWork.DocumentSession.Store(adminUser);
 
-                return RedirectToAction("Home", "Home");
+                _emailer.SendEmail("ganesh.shivshankar@gmail.com", "Account", "username : " + adminUser.Name + ", password: " + password, false);
+
+                return Redirect("/rr/login");
             }
             return View();
         }

@@ -1,14 +1,25 @@
-﻿<div>
-    <div class="ui-widget-shadow ui-corner-all" style="width: 293px; height: 145px; position: absolute;
-        left: 105px; top: 105px;">
-    </div>
-</div>
-<div style="position: absolute; width: 280px; height: 130px; left: 100px; top: 100px;
-    padding: 10px;" class="ui-widget ui-widget-content ui-corner-all">
-    <div class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+﻿@model RightRecruit.Web.Models.LoginDto
+@{
+    Cassette.Views.Bundles.Reference("Scripts/login");
+}
+<div class="outerBorder">
+    <div class="loginTitle">
+        Login</div>
+    @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
+    {
+        <div class="fieldInput">@Html.TextBoxFor(p => p.Login, new { @id = "login" })</div>
+        <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Login)</div>
+        
+        <div class="fieldInput">@Html.TextBoxFor(p => p.Password, new { @id = "password" })</div>
+        <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Password)</div>
+        
+        <div class="fieldLabel">@Html.CheckBoxFor(p => p.RememberMe, new { @id = "remember"})Remember me
+            <span style="float:right;margin-right:6px;"><button id="loginButton" runat="server">Login</button></span>
+        </div>
+        <div class="fieldInput"><a class="forgotPassword" href="#">Forgot password</a></div>
+        
+        <div class="divider"></div>
+        <div class="newUser">Hello! New here?</div>
+        <div class="learnMorenSignup"><a href="#" class="learn">Learn</a> more,<a href="#" class="learn"> sign up</a> for a trial account.</div>
+    }
 </div>

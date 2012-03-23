@@ -1,6 +1,7 @@
 ﻿@{
     Cassette.Views.Bundles.Reference("Scripts/libs");
     Cassette.Views.Bundles.Reference("Content");
+    Cassette.Views.Bundles.Reference("Scripts/global");
 }
 <!DOCTYPE html>
 <html>
@@ -12,64 +13,17 @@
 <body>
     @Cassette.Views.Bundles.RenderScripts()
     <div class="mainHeader">
-        
+        <a class="link" href="/rs/signup">Sign up</a>
     </div>
-    <div class="menuBackground">
-    <div id="menu">
-            <ul class="menu">
-                <li><a href="#" class="parent"><span>Home</span></a>
-                    <ul>
-                        <li><a href="#" class="parent"><span>Sub Item 1</span></a>
-                            <ul>
-                                <li><a href="#" class="parent"><span>Sub Item 1.1</span></a>
-                                    <ul>
-                                        <li><a href="#"><span>Sub Item 1.1.1</span></a></li>
-                                        <li><a href="#"><span>Sub Item 1.1.2</span></a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#"><span>Sub Item 1.2</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.3</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.4</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.5</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.6</span></a></li>
-                                <li><a href="#" class="parent"><span>Sub Item 1.7</span></a>
-                                    <ul>
-                                        <li><a href="#"><span>Sub Item 1.7.1</span></a></li>
-                                        <li><a href="#"><span>Sub Item 1.7.2</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><span>Sub Item 2</span></a></li>
-                        <li><a href="#"><span>Sub Item 3</span></a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="parent"><span>Product Info</span></a>
-                    <ul>
-                        <li><a href="#" class="parent"><span>Sub Item 1</span></a>
-                            <ul>
-                                <li><a href="#"><span>Sub Item 1.1</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.2</span></a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" class="parent"><span>Sub Item 2</span></a>
-                            <ul>
-                                <li><a href="#"><span>Sub Item 2.1</span></a></li>
-                                <li><a href="#"><span>Sub Item 2.2</span></a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><span>Sub Item 3</span></a></li>
-                        <li><a href="#"><span>Sub Item 4</span></a></li>
-                        <li><a href="#"><span>Sub Item 5</span></a></li>
-                        <li><a href="#"><span>Sub Item 6</span></a></li>
-                        <li><a href="#"><span>Sub Item 7</span></a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><span>Help</span></a></li>
-                <li class="last"><a href="#"><span>Contacts</span></a></li>
-            </ul>
-        </div>
-        </div>
+    <div id="menuDiv" class="menuBackground">
+        <ul class="menuBase">
+            <li class="menuItem"><a class="menuItemAnchor" href="#">Home</a></li>
+            <li class="menuItem"><a class="menuItemAnchor" href="#">Clients</a></li>
+            <li class="menuItem"><a class="menuItemAnchor" href="#">Candidates</a></li>
+            <li class="menuItem"><a class="menuItemAnchor" href="#">Dashboard</a></li>
+            <li class="menuItem"><a class="menuItemAnchor" href="#">Admin</a></li>
+        </ul>
+    </div>
     @RenderBody()
 </body>
 </html>

@@ -11,14 +11,15 @@
 </head>
 <body>
     @Cassette.Views.Bundles.RenderScripts()
-    <div class="main">
+    <div class="mainHeader">
         <div class="title left">
             <h1>
                 RightRecruit | RightSide</h1>
         </div>
         <div class="right">
-            <span>@Html.ActionLink("Pricing", "Pricing", "Home", null, null)</span> | 
-            <span>@Html.ActionLink("Sign up", "Signup", "Signup", null, null)</span>
+            @Html.ActionLink("Pricing", "Pricing", "Home", null, new { @class="link"}) | 
+            @Html.ActionLink("Sign up", "Signup", "Signup", null, new { @class = "link" }) | 
+            <a class="link" href="/rr/login">Login</a>
         </div>
     </div>
     <div>

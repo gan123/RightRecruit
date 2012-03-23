@@ -17,14 +17,14 @@ namespace RightRecruit.Mvc.Infrastructure.Emailer
         {
             _client = new SmtpClient("smtp.gmail.com", 587)
                           {
-                              Credentials = new NetworkCredential("ganesh.shivshankar@gmail.com", "dealmaker123"),
+                              Credentials = new NetworkCredential("rightrecruit.mailer@gmail.com", "rightrecruit2012"),
                               EnableSsl = true
                           };
         }
 
         public void SendEmail(string toAddresses, string subject, string body, bool isHtml)
         {
-            var mailMessage = new MailMessage("", toAddresses, subject, body);
+            var mailMessage = new MailMessage("rightrecruit.mailer@gmail.co", toAddresses, subject, body);
             mailMessage.IsBodyHtml = isHtml;
 
             _client.Send(mailMessage);

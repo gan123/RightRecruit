@@ -12,6 +12,5 @@ namespace RightRecruit.Web.Controllers
         {
             return View();
         }
-
     }
 }
