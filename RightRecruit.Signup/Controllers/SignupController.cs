@@ -50,7 +50,7 @@ namespace RightRecruit.Signup.Controllers
                 adminUser.Agency = newAgency;
                 UnitOfWork.DocumentSession.Store(adminUser);
 
-                _emailer.SendEmail("ganesh.shivshankar@gmail.com", "Account", "username : " + adminUser.Name + ", password: " + password, false);
+                _emailer.SendEmail(agency.Email, "Account", "username : " + adminUser.Name + ", password: " + password, false);
 
                 return Redirect("/rr/login");
             }
