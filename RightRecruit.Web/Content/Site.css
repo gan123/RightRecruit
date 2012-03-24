@@ -121,6 +121,21 @@ textarea
 	  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+.outerRing {
+	width:98%;
+	margin-top: 2%;
+    border: 1px solid #e7e7e7;
+	display: block;
+	background: #F2F4F6;
+	text-align: center;
+	position:relative;
+	left:1%;
+	top:2%;
+	-webkit-box-shadow: 0 5px 5px rgba(0,0,0, 0.2);   
+	  -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+	  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
 .outerBorder {
 	width:250px;
 	height: auto;

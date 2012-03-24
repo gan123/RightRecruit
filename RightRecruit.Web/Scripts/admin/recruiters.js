@@ -8,15 +8,25 @@ $(function () {
     $("#recruiters").toggleClass('menuItemClicked', true);
     $("#recruiters").children().toggleClass('menuItemAnchor', true);
 
-    $("#test").button().click(function () {
-        recruitersViewModel.recruiters.push();
-        console.log(ko.toJSON(recruitersViewModel.recruiters));
+    $("#add").button({
+        icons: {
+            primary: 'ui-icon-person'
+        }
+    }).css('font-size', '9pt').css('height', '23px').click(function () {
+        rightrecruit.recruitersViewModel.addRecruiter();
     });
 
+    var rightrecruit = {};
     $("input.name[type=text]").watermark('Recruiter Name');
     $("input.email[type=text]").watermark('Recruiter Email');
+    $("button.delete").button({
+        icons: {
+            primary: 'ui-icon-trash'
+        },
+        text: false
+    }).css('width', '20px').css('height', '20px');
 
-    var LineItem = function () {
+    rightrecruit.LineItem = function () {
         var self = this;
         self.id = ko.observable();
         self.name = ko.observable();
@@ -28,24 +38,49 @@ $(function () {
         });
     };
 
-    var recruitersViewModel = {
-        roles: ko.observableArray([]),
-        plans: ko.observableArray([]),
-        products: ko.observableArray([]),
-        recruiters: ko.observableArray([])
-    };
+    rightrecruit.recruitersViewModel = function () {
+        var roles = ko.observableArray([]),
+        plans = ko.observableArray([]),
+        products = ko.observableArray([]),
+        recruiters = ko.observableArray([]),
+        plan = ko.observable(),
+        grandTotal = ko.computed(function () {
+            var total = 0;
+            $.each(recruiters(), function () {
+                total += this.cost();
+            });
+            return total == 0 ? 200 : total;
+        }),
+        addRecruiter = function () {
+            rightrecruit.recruitersViewModel.recruiters.push(new rightrecruit.LineItem());
+        },
+        removeRecruiter = function (line) {
+            rightrecruit.recruitersViewModel.recruiters.remove(line);
+        };
+        return {
+            roles: roles,
+            plans: plans,
+            products: products,
+            recruiters: recruiters,
+            plan: plan,
+            grandTotal: grandTotal,
+            addRecruiter: addRecruiter,
+            removeRecruiter: removeRecruiter
+        }
+    } ();
 
     var url = "../admin/load";
     $.getJSON(
     url,
     null,
     function (data) {
-        recruitersViewModel.roles(data.Roles);
-        recruitersViewModel.plans(data.Plans);
-        recruitersViewModel.products(data.Products);
-        //recruitersViewModel.recruiters(data.Recruiters);
+        rightrecruit.recruitersViewModel.roles(data.Roles);
+        rightrecruit.recruitersViewModel.plans(data.Plans);
+        rightrecruit.recruitersViewModel.products(data.Products);
+        console.log(data.Plans);
+        console.log(rightrecruit.recruitersViewModel.plans.length);
         $.each(data.Recruiters, function (i, p) {
-            recruitersViewModel.recruiters.push(new LineItem()
+            rightrecruit.recruitersViewModel.recruiters.push(new rightrecruit.LineItem()
                 .id(p.Id)
                 .name(p.Name)
                 .email(p.Email)
@@ -55,5 +90,5 @@ $(function () {
         });
     });
 
-    ko.applyBindings(recruitersViewModel);
+    ko.applyBindings(rightrecruit.recruitersViewModel);
 });

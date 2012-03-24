@@ -9,5 +9,5 @@ $(function () {
         });
         $(this).toggleClass('menuItemClicked', true);
         $(this).children().toggleClass('menuItemAnchor', true);
-    });    
+    });
 });

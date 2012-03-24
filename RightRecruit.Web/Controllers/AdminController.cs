@@ -31,6 +31,8 @@ namespace RightRecruit.Web.Controllers
                              };
         }
 
+        public string Plan { get; set; }
+
         public IEnumerable<RoleDto> Roles
         {
             get
