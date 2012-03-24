@@ -13,27 +13,39 @@
 <body>
     @Cassette.Views.Bundles.RenderScripts()
     <div class="mainHeader">
-        <a class="link" href="/rs/signup">Sign up</a>
+        <a class="link right" href="/rs/signup">Sign up</a>
     </div>
-    <div id="menuDiv" class="menuBackground">
-        <ul class="menuBase">
-            <li class="menuItem"><a class="menuItemAnchor" href="#">Home</a></li>
-            <li class="menuItem"><a class="menuItemAnchor" href="#">Clients</a></li>
-            <li class="menuItem"><a class="menuItemAnchor" href="#">Candidates</a></li>
-            <li class="menuItem"><a class="menuItemAnchor" href="#">Dashboard</a></li>
-            <li class="menuItem"><a class="menuItemAnchor" href="#">Admin</a></li>
-        </ul>
-    </div>
-    <div id="overlay" style="display:none;" class="ui-overlay">
+    @if (HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser] != null)
+    {
+        var user = (RightRecruit.Domain.User.User)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser];
+        <div id="menuDiv" class="menuBackground">
+            <ul class="menuBase">
+                @if (user is RightRecruit.Domain.User.AgencyAdmin)
+                {
+                    <li id="recruiters" class="menuItem"><a class="menuItemAnchor" href="#">Recruiters</a></li>
+                    <li class="menuItem"><a class="menuItemAnchor" href="#">Configuration</a></li>
+                }
+                else if (user is RightRecruit.Domain.User.Recruiter)
+                {
+                    <li class="menuItem"><a class="menuItemAnchor" href="#">Dashboard</a></li>
+                    <li class="menuItem"><a class="menuItemAnchor" href="#">Clients</a></li>
+                    <li class="menuItem"><a class="menuItemAnchor" href="#">Candidates</a></li>
+                }
+            </ul>
+        </div>
+    }
+    <div id="overlay" style="display: none;" class="ui-overlay">
         <div class="ui-widget-overlay">
         </div>
-        <div style="position: absolute; width: 280px; height: 130px; left: 35%; top: 35%;z-index:10;
-        padding: 10px;background: none;" >
-             <div class="circle" ></div>
-            <div class="circle1" >
+        <div style="position: absolute; width: 280px; height: 130px; left: 35%; top: 35%;
+            z-index: 10; padding: 10px; background: none;">
+            <div class="circle">
+            </div>
+            <div class="circle1">
             </div>
         </div>
     </div>
     @RenderBody()
 </body>
 </html>
+

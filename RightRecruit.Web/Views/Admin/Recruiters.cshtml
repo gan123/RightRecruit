@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Recruiters";
+    Cassette.Views.Bundles.Reference("Scripts/admin");
+    
+}
+
+<table>
+    <tbody data-bind="foreach: recruiters">
+       <tr>
+        <td style="width: 250px;">
+        <div class="fieldInputSmall">
+            <input class="name required" type="text" data-bind="value: name" />
+            </div>
+        </td>
+        <td style="width: 250px;">
+        <div class="fieldInputSmall">
+            <input class="email" type="text" data-bind="value: email" />
+            </div>
+        </td>
+        <td>
+            <select class="role" data-bind="options: $parent.roles, value: role, optionsText: 'Name', optionsValue: 'Name'"></select>
+        </td>
+        <td>
+            <select class="plan" data-bind="options: $parent.products, value: product, optionsText: 'Name', optionsValue: 'Name'"></select>
+        </td>
+        <td style="padding:8px 0px 0px 10px;">
+            <span class="cost">INR </span>
+            <span class="cost" data-bind="text: cost"></span>
+        </td>
+    </tr> 
+    </tbody>
+</table>
+<input type="button" id="test" value="Test"/>

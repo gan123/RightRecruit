@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Raven.Client.Linq;
 using RightRecruit.Domain.User;
@@ -26,7 +25,7 @@ namespace RightRecruit.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admins = UnitOfWork.DocumentSession.Query<AgencyAdmin>()
+                var admins = UnitOfWork.DocumentSession.Query<User>()
                     .Where(u => u.Login == login.UserName)
                     .ToList();
 
@@ -38,7 +37,9 @@ namespace RightRecruit.Web.Controllers
                     if (new SaltedHash().VerifyHashString(login.Password, savedHash, savedSalt))
                     {
                         HttpContext.Session[Globals.CurrentUser] =user;
-                        return RedirectToAction("Home", "Home");
+                        // TODO : cookie implementation
+                        //if (login.RememberMe)
+                        return RedirectToAction("Recruiters", "Admin");
                     }
                 }
             }

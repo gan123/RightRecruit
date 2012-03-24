@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Pricing";
+    Layout = "~/Views/Shared/_SignupLayout.cshtml";
+}
+
+<div class="main">
+    <div class="pricingTitle">Choose your plan and sign up!</div>
+    <div class="outer">
+        <div id="planSelect">
+            <div class="box basic">
+                <div class="priceTitle">
+                    INR 200/mo</div>
+                <div class="ribbon-wrapper">
+                    <div class="ribbon-front ribbon-front-basic">
+                        Basic
+                    </div>
+                    <div class="ribbon-edge-topleft">
+                    </div>
+                    <div class="ribbon-edge-topright">
+                    </div>
+                    <div class="ribbon-edge-bottomleft">
+                    </div>
+                    <div class="ribbon-edge-bottomright">
+                    </div>
+                    <div class="ribbon-back-left">
+                    </div>
+                    <div class="ribbon-back-right">
+                    </div>
+                </div>
+                <div class="pricingContent">
+                </div>
+                <div class="signup bplan">
+                    @Html.ActionLink("Sign up", "Signup", "Signup")
+                </div>
+            </div>
+            <div class="box intermediate">
+                <div class="priceTitle">
+                    INR 600/mo</div>
+                <div class="ribbon-wrapper">
+                    <div class="ribbon-front ribbon-front-intermediate">
+                        Intermediate
+                    </div>
+                    <div class="ribbon-edge-topleft">
+                    </div>
+                    <div class="ribbon-edge-topright">
+                    </div>
+                    <div class="ribbon-edge-bottomleft">
+                    </div>
+                    <div class="ribbon-edge-bottomright">
+                    </div>
+                    <div class="ribbon-back-left">
+                    </div>
+                    <div class="ribbon-back-right">
+                    </div>
+                </div>
+                <div class="pricingContent">
+                </div>
+                <div class="signup iplan">
+                    @Html.ActionLink("Sign up", "Signup", "Signup")
+                </div>
+            </div>
+            <div class="box pro">
+                <div class="priceTitle">
+                    INR 1500/mo</div>
+                <div class="ribbon-wrapper">
+                    <div class="ribbon-front ribbon-front-pro">
+                        Pro
+                    </div>
+                    <div class="ribbon-edge-topleft">
+                    </div>
+                    <div class="ribbon-edge-topright">
+                    </div>
+                    <div class="ribbon-edge-bottomleft">
+                    </div>
+                    <div class="ribbon-edge-bottomright">
+                    </div>
+                    <div class="ribbon-back-left">
+                    </div>
+                    <div class="ribbon-back-right">
+                    </div>
+                </div>
+                <div class="pricingContent">
+                </div>
+                <div class="signup pplan">
+                    @Html.ActionLink("Sign up", "Signup", "Signup")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

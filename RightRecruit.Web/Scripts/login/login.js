@@ -6,7 +6,6 @@
 $(function () {
     $("#login").watermark('User name');
     $("#password").watermark('Password');
-    $("#menuDiv").hide();
     $("#loginButton").button().click(function () {
         $("#overlay").show();
     });

@@ -30,5 +30,10 @@ namespace RightRecruit.Mvc.Infrastructure.Controllers
 
             return string.Empty;
         }
+
+        protected void LoadUser(string userId)
+        {
+            
+        }
     }
 }

@@ -41,6 +41,30 @@ namespace RightRecruit.Web
                 "home", // URL with parameters
                 new { controller = "Home", action = "Home" } // Parameter defaults
             );
+
+            routes.MapRoute(
+              "Pricing", // Route name
+              "pricing", // URL with parameters
+              new { controller = "Home", action = "Pricing" } // Parameter defaults
+          );
+
+            routes.MapRoute(
+               "Signup", // Route name
+               "signup", // URL with parameters
+               new { controller = "Signup", action = "Signup" } // Parameter defaults
+           );
+
+            routes.MapRoute(
+              "AdminRecruiters", // Route name
+              "admin/recruiters", // URL with parameters
+              new { controller = "Admin", action = "Recruiters" } // Parameter defaults
+          );
+
+            routes.MapRoute(
+              "AdminRecruitersLoad", // Route name
+              "admin/load", // URL with parameters
+              new { controller = "Admin", action = "Load" } // Parameter defaults
+          );
         }
 
         protected void Application_Start()
@@ -56,6 +80,8 @@ namespace RightRecruit.Web
                 Component.For<IControllerActivator>().ImplementedBy<ControllerActivator>(),
                 Component.For<LoginController>().ImplementedBy<LoginController>().LifeStyle.Transient,
                 Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
+                Component.For<SignupController>().ImplementedBy<SignupController>().LifeStyle.Transient,
+                Component.For<AdminController>().ImplementedBy<AdminController>().LifeStyle.Transient,
                 Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>(),
                 Component.For<ICurrentUserProvider>().ImplementedBy<CurrentUserProvider>(),
                 Component.For<IEmailer>().ImplementedBy<Emailer>(),
