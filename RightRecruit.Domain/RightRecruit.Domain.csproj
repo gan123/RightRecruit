@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agency\AgencyBranding.cs" />
+    <Compile Include="Agency\AgencyEarnings.cs" />
     <Compile Include="Agency\AgencyPlan.cs" />
+    <Compile Include="Agency\RecruiterProduct.cs" />
     <Compile Include="Agency\Theme.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="Client\Position.cs" />

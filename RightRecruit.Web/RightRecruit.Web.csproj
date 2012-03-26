@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="ViewModels\AdminRecruitersViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignupController.cs" />

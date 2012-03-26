@@ -10,6 +10,13 @@
                 <select data-bind="options: plans, value: plan, optionsText: 'Name', optionsValue: 'Name'">
                 </select>
             </td>
+            <td >
+                <select data-bind="options: endDates, value: endDate, optionsText: 'Text', optionsValue: 'EndDate', visible: showEndDates">
+                </select>
+            </td>
+             <td style="padding: 10px 0px 0px 4px;">
+                    <span class="cost" data-bind="text: Text, data: trialEndDate(), visible: hideEndDates"></span>
+                </td>
             <td style="padding: 10px 0px 0px 4px;">
                 <button id="add">Add Recruiter</button>
             </td>

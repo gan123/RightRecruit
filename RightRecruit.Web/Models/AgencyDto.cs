@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RightRecruit.Web.Models
 {
@@ -51,5 +52,11 @@ namespace RightRecruit.Web.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public class DateDto
+    {
+        public string Text { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

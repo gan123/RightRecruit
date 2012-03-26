@@ -44,6 +44,31 @@ $(function () {
         products = ko.observableArray([]),
         recruiters = ko.observableArray([]),
         plan = ko.observable(),
+        monthlyEndDates = ko.observableArray([]),
+        annualEndDates = ko.observableArray([]),
+        endDates = ko.computed(function () {
+            if (plan() == "Monthly") {
+                console.log(monthlyEndDates);
+                return monthlyEndDates();
+            }
+            else if (plan() == "Annual") {
+                return annualEndDates();
+            }
+        }),
+        endDate = ko.observable(),
+        trialEndDate = ko.observable(),
+        showEndDates = ko.computed(function () {
+            if (plan() == "Monthly" || plan() == "Annual") {
+                return true;
+            }
+            return false;
+        }),
+        hideEndDates = ko.computed(function () {
+            if (showEndDates()) {
+                return false;
+            }
+            return true;
+        }),
         grandTotal = ko.computed(function () {
             var total = 0;
             $.each(recruiters(), function () {
@@ -65,7 +90,14 @@ $(function () {
             plan: plan,
             grandTotal: grandTotal,
             addRecruiter: addRecruiter,
-            removeRecruiter: removeRecruiter
+            removeRecruiter: removeRecruiter,
+            monthlyEndDates: monthlyEndDates,
+            annualEndDates: annualEndDates,
+            endDates: endDates,
+            endDate: endDate,
+            showEndDates: showEndDates,
+            hideEndDates: hideEndDates,
+            trialEndDate: trialEndDate
         }
     } ();
 
@@ -77,8 +109,10 @@ $(function () {
         rightrecruit.recruitersViewModel.roles(data.Roles);
         rightrecruit.recruitersViewModel.plans(data.Plans);
         rightrecruit.recruitersViewModel.products(data.Products);
-        console.log(data.Plans);
-        console.log(rightrecruit.recruitersViewModel.plans.length);
+        rightrecruit.recruitersViewModel.monthlyEndDates(data.MonthlyEndDates);
+        rightrecruit.recruitersViewModel.annualEndDates(data.AnnualEndDates);
+        rightrecruit.recruitersViewModel.trialEndDate(data.TrialEndDate);
+        console.log(rightrecruit.recruitersViewModel.trialEndDate().Text);
         $.each(data.Recruiters, function (i, p) {
             rightrecruit.recruitersViewModel.recruiters.push(new rightrecruit.LineItem()
                 .id(p.Id)
