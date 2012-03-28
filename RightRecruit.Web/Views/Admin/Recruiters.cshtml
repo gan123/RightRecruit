@@ -3,6 +3,9 @@
     Cassette.Views.Bundles.Reference("Scripts/admin");
     
 }
+
+@using (Html.BeginForm())
+{
 <div class="outerRing">
     <table>
         <tr>
@@ -30,12 +33,12 @@
                 </td>
                 <td style="width: 350px;">
                     <div class="fieldInputSmall">
-                        <input class="name required" type="text" data-bind="value: name" />
+                        <input class="name" required placeholder="Recruiter name" type="text" data-bind="value: name" />
                     </div>
                 </td>
                 <td style="width: 350px;">
                     <div class="fieldInputSmall">
-                        <input class="email" type="text" data-bind="value: email" />
+                        <input class="email" type="email" required placeholder="Recruiter email" data-bind="value: email" />
                     </div>
                 </td>
                 <td>
@@ -60,6 +63,10 @@
             <td>
                 <div class="fieldLabel">INR <span data-bind="text: grandTotal"></span></div>
             </td>
+            <td style="padding: 10px 0px 0px 4px;">
+                <input id="proceed" type="submit" value="Proceed" />
+            </td>
         </tr>
     </table>
 </div>
+}

@@ -29,8 +29,6 @@ namespace RightRecruit.Web.Models
         public string Role { get; set; }
         public string Product { get; set; }
         public double Cost { get; set;}
-
-        [Required(ErrorMessage = "Please provide a name")]
         public string Name { get; set; }
         public string Email { get; set; }
         public string Id { get; set; }

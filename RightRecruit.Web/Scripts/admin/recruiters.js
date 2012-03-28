@@ -16,9 +16,9 @@ $(function () {
         rightrecruit.recruitersViewModel.addRecruiter();
     });
 
+    $("#proceed").button().css('font-size', '9pt').css('height', '23px');
+
     var rightrecruit = {};
-    $("input.name[type=text]").watermark('Recruiter Name');
-    $("input.email[type=text]").watermark('Recruiter Email');
     $("button.delete").button({
         icons: {
             primary: 'ui-icon-trash'

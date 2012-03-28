@@ -161,8 +161,9 @@ textarea
 
 .mainHeader
 {
-    background-color:#515151;
-    height:50px;
+    background:url(../Content/globals/images/gray_bg.jpg);
+    background-repeat: repeat-x;
+    height:80px;
 }
 
 .link 
@@ -766,4 +767,12 @@ select:focus
     font-family: CandelaBold;
     font-size: 12pt;
     text-align: center;
+}
+
+input:invalid 
+{
+    border: pink solid 2px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    outline: none;
 }
