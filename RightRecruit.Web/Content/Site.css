@@ -10,10 +10,20 @@
     font-family: CandelaBook;
     src: url(../fonts/CandelaBook-webfont.woff);
 }
+@font-face
+{
+    font-family: GudeaBold;
+    src: url(../fonts/Gudea-Bold-webfont.woff);
+}
+@font-face
+{
+    font-family: Gudea;
+    src: url(../fonts/Gudea-Regular-webfont.woff);
+}
 
 body
 {
-    font-family: CandelaBook;
+    font-family: Gudea;
     color: #232323;
     background:url(globals/icons/header-bg.png) repeat-x;
     margin:0px;
@@ -108,7 +118,7 @@ textarea
 
 .outerCover {
 	width:500px;
-	margin-top: 8%;
+	margin-top: 4%;
     border: 1px solid #e7e7e7;
 	display: block;
 	background: #F2F4F6;
@@ -154,7 +164,7 @@ textarea
 
 .loginTitle {
 	font-size : 20pt;
-	font-family: CandelaBold;
+	font-family: GudeaBold;
 	text-align: left;
 	margin: 20px 10px 25px 15px;
 }
@@ -177,7 +187,7 @@ textarea
 {
     color: #ffffff;
     font-size: 12px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     text-align: center;
     vertical-align: middle;
     padding-top: 3px;
@@ -202,7 +212,7 @@ textarea
     background: #00b4ff;
     color: #ffffff;
     font-size: 36px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     text-align: left;
     vertical-align: middle;
     padding-top: 10px;
@@ -232,7 +242,7 @@ background-image: -webkit-gradient(
     width:auto;
     font-size: 12pt;
     list-style:none; 
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     padding: 0px;
     margin: 0px;
 }
@@ -330,7 +340,7 @@ background-image: -webkit-gradient(
     text-align:left;
     margin:16px 4px 2px 16px;
     font-size: 14px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
 }
 
 .regular {
@@ -345,7 +355,7 @@ background-image: -webkit-gradient(
     text-align:left;
     margin:2px 2px 2px 16px;
     font-size: 16px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
 }
 
 .fieldInput input {
@@ -356,7 +366,7 @@ background-image: -webkit-gradient(
   width: 90%;
   font-size: 16px;
   padding: 2px;
-  font-family: CandelaBook;
+  font-family: Gudea;
   text-align: left;
   position: relative;
   display: block;
@@ -372,7 +382,7 @@ background-image: -webkit-gradient(
   width: 90%;
   font-size: 12px;
   padding: 2px;
-  font-family: CandelaBook;
+  font-family: Gudea;
   text-align: left;
   position: relative;
   display: block;
@@ -408,7 +418,7 @@ em
 	font-size: 10pt;
 	margin: 4px 4px 4px 12px;
 	text-decoration: none;
-	font-family: CandelaBold;
+	font-family: GudeaBold;
 	text-align: left;
 	float: left;
 	color: #515151;
@@ -426,7 +436,7 @@ em
     text-align:left;
     margin:50px 4px 2px 10px;
     font-size: 14px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     width: 90%;
     height: 1px;
     background: #bdbdbd;
@@ -440,7 +450,7 @@ em
     margin:18px 4px 2px 10px;
     font-size: 20pt;
     color: #bdbdbd;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
 }
 
 .learnMorenSignup 
@@ -451,7 +461,7 @@ em
     margin:4px 4px 12px 10px;
     font-size: 12pt;
     color: #bdbdbd;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
 }
 
 .learn {
@@ -553,7 +563,7 @@ em
 {
     text-align: center;
     height: 40px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     font-size: 30px;
 }
 
@@ -739,7 +749,7 @@ em
     text-align:left;
     margin: 16px 16px 40px 16px;
     font-size: 20px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
 }
 
 select
@@ -747,7 +757,7 @@ select
     border: 1px solid #e7e7e7;
     height: 25px;
     margin: 8px 0px 0px 0px;
-    font-family: CandelaBook;
+    font-family: Gudea;
     font-size: 10pt;
     -webkit-border-radius: 4px;
   -moz-border-radius: 8px;
@@ -764,7 +774,7 @@ select:focus
 .cost
 {
     margin: 0px 0px 0px 2px;
-    font-family: CandelaBold;
+    font-family: GudeaBold;
     font-size: 12pt;
     text-align: center;
 }
