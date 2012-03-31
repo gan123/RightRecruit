@@ -250,6 +250,8 @@
     <Content Include="Views\Signup\Signup.cshtml" />
     <Content Include="Views\Home\Pricing.cshtml" />
     <Content Include="Views\Admin\Recruiters.cshtml" />
+    <None Include="fonts\Gudea-Bold-webfont.woff" />
+    <None Include="fonts\Gudea-Regular-webfont.woff" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
