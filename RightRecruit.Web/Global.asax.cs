@@ -10,6 +10,7 @@ using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Plumbing;
 using RightRecruit.Web.Controllers;
 using RightRecruit.Web.Filters;
+using RightRecruit.Web.Installers;
 
 namespace RightRecruit.Web
 {
@@ -55,6 +56,12 @@ namespace RightRecruit.Web
            );
 
             routes.MapRoute(
+               "SignuProceed", // Route name
+               "signup/proceed", // URL with parameters
+               new { controller = "Signup", action = "Proceed" } // Parameter defaults
+           );
+
+            routes.MapRoute(
               "AdminRecruiters", // Route name
               "admin/recruiters", // URL with parameters
               new { controller = "Admin", action = "Recruiters" } // Parameter defaults
@@ -62,8 +69,14 @@ namespace RightRecruit.Web
 
             routes.MapRoute(
               "AdminRecruitersLoad", // Route name
-              "admin/load", // URL with parameters
+              "admin/recruiters/load", // URL with parameters
               new { controller = "Admin", action = "Load" } // Parameter defaults
+          );
+
+            routes.MapRoute(
+              "AdminRecruitersSave", // Route name
+              "admin/recruiters/save", // URL with parameters
+              new { controller = "Admin", action = "Save" } // Parameter defaults
           );
         }
 
@@ -76,17 +89,10 @@ namespace RightRecruit.Web
 
             var container = new WindsorContainer();
             container.Kernel.Resolver.AddSubResolver(new ConventionBasedResolver(container.Kernel));
-            container.Register(
-                Component.For<IControllerActivator>().ImplementedBy<ControllerActivator>(),
-                Component.For<LoginController>().ImplementedBy<LoginController>().LifeStyle.Transient,
-                Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
-                Component.For<SignupController>().ImplementedBy<SignupController>().LifeStyle.Transient,
-                Component.For<AdminController>().ImplementedBy<AdminController>().LifeStyle.Transient,
-                Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>(),
-                Component.For<ICurrentUserProvider>().ImplementedBy<CurrentUserProvider>(),
-                Component.For<IEmailer>().ImplementedBy<Emailer>(),
-                Component.For<HttpSessionStateBase>().LifeStyle.PerWebRequest
-                .UsingFactoryMethod(() => new HttpSessionStateWrapper(HttpContext.Current.Session)));
+            container.Install(
+                new MvcInstaller(),
+                new ControllerInstaller(),
+                new ServiceInstaller());
 
             DependencyResolver.SetResolver(new WindsorDependencyResolver(container));
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));

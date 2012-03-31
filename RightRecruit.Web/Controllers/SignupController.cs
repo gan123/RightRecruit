@@ -21,17 +21,16 @@ namespace RightRecruit.Web.Controllers
         [HttpGet]
         public ActionResult Signup()
         {
-            var model = new AgencyDto();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Signup(AgencyDto agency)
+        public ActionResult Proceed(AgencyDto agency)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(agency.CompanyName))
             {
                 var newAgency = new Agency();
-                var contact = new Contact {Email = agency.Email, Phone = agency.Phone};
+                var contact = new Contact { Email = agency.Email, Phone = agency.Phone };
                 newAgency.Website = agency.Website;
                 newAgency.Name = agency.CompanyName;
                 newAgency.Contact = contact;
@@ -52,9 +51,9 @@ namespace RightRecruit.Web.Controllers
 
                 _emailer.SendEmail(agency.Email, "Account", "username : " + adminUser.Name + ", password: " + password, false);
 
-                return Redirect("/rr/login");
+                return new EmptyResult();
             }
-            return View();
+            return View("Signup");
         }
     }
 }

@@ -16,7 +16,23 @@ $(function () {
         rightrecruit.recruitersViewModel.addRecruiter();
     });
 
-    $("#proceed").button().css('font-size', '9pt').css('height', '23px');
+    $("#proceed")
+    .button()
+    .click(function () {
+        var saveData = new rightrecruit.SaveModel();
+        saveData.plan = rightrecruit.recruitersViewModel.plan;
+        saveData.endDate = rightrecruit.recruitersViewModel.endDate;
+        saveData.recruiters = rightrecruit.recruitersViewModel.recruiters;
+
+        $.ajax({
+            url: "../admin/recruiters/save",
+            data: saveData,
+            type: "POST",
+            dataType: "json"
+        });
+    })
+    .css('font-size', '9pt')
+    .css('height', '23px');
 
     var rightrecruit = {};
     $("button.delete").button({
@@ -25,6 +41,15 @@ $(function () {
         },
         text: false
     }).css('width', '20px').css('height', '20px');
+
+    rightrecruit.SaveModel = function () {
+        var plan, endDate, recuiters;
+        return {
+            plan: plan,
+            endDate: endDate,
+            recruiters: recruiters
+        }
+    } ();
 
     rightrecruit.LineItem = function () {
         var self = this;
@@ -101,7 +126,7 @@ $(function () {
         }
     } ();
 
-    var url = "../admin/load";
+    var url = "../admin/recruiters/load";
     $.getJSON(
     url,
     null,

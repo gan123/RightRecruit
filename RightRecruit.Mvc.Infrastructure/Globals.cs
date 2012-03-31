@@ -4,5 +4,6 @@ namespace RightRecruit.Mvc.Infrastructure
     {
         public const string UnitOfWork = "UnitOfWork";
         public const string CurrentUser = "CurrentUser";
+        public const string Agency = "Agency";
     }
 }

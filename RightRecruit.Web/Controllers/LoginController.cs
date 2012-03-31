@@ -25,18 +25,25 @@ namespace RightRecruit.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admins = UnitOfWork.DocumentSession.Query<User>()
+                var users = UnitOfWork.DocumentSession.Query<User>()
                     .Where(u => u.Login == login.UserName)
                     .ToList();
 
-                if (admins.Any(u => u.HashedPassword.Text.ToPlainString() == login.Password))
+                if (users.Any(u => u.HashedPassword.Text.ToPlainString() == login.Password))
                 {
-                    var user = admins.Single(u => u.HashedPassword.Text.ToPlainString() == login.Password && u.Login == login.UserName);
+                    var user = users.Single(u => u.HashedPassword.Text.ToPlainString() == login.Password && u.Login == login.UserName);
                     var savedSalt = user.HashedPassword.Salt.ToPlainString();
                     var savedHash = user.HashedPassword.Hash.ToPlainString();
                     if (new SaltedHash().VerifyHashString(login.Password, savedHash, savedSalt))
                     {
-                        HttpContext.Session[Globals.CurrentUser] =user;
+                        HttpContext.Session[Globals.CurrentUser] = user;
+                        if (user is AgencyAdmin || user is Recruiter)
+                        {
+                            if (user is AgencyAdmin)
+                                HttpContext.Session[Globals.Agency] = ((AgencyAdmin) user).Agency.Id;
+                            if (user is Recruiter)
+                                HttpContext.Session[Globals.Agency] = ((Recruiter)user).Agency.Id;
+                        }
                         // TODO : cookie implementation
                         //if (login.RememberMe)
                         return RedirectToAction("Recruiters", "Admin");

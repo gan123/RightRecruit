@@ -1,13 +1,12 @@
 ﻿using System.Configuration;
-using System.Linq;
 using System.Web.Mvc;
-using Raven.Abstractions.Json;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.MvcIntegration;
 using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
+using RightRecruit.Mvc.Infrastructure.Listeners;
 
 namespace RightRecruit.Mvc.Infrastructure.Filters
 {
@@ -31,11 +30,11 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
                                                                        return DocumentConvention.DefaultTypeTagName(type);
                                                                    }
                                         }
-                                };
+                                }.RegisterListener(new AuditListener());
 
             DocumentStore.Initialize();
-
             DocumentStore.Conventions.SaveEnumsAsIntegers = true;
+            
             RavenProfiler.InitializeFor(DocumentStore);
         }
 

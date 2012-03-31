@@ -84,6 +84,7 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RavenId.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Listeners\AuditListener.cs" />
     <Compile Include="Plumbing\ControllerActivator.cs" />
     <Compile Include="Plumbing\ConventionBasedResolver.cs" />
     <Compile Include="Plumbing\WindsorDependencyResolver.cs" />

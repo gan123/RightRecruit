@@ -126,6 +126,9 @@
   <ItemGroup>
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Installers\ControllerInstaller.cs" />
+    <Compile Include="Installers\MvcInstaller.cs" />
+    <Compile Include="Installers\ServiceInstaller.cs" />
     <Compile Include="ViewModels\AdminRecruitersViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Models\AgencyDto.cs" />
     <Compile Include="Models\LoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\SavePlanDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\globals\icons\header-bg.png" />
@@ -188,6 +192,7 @@
     <Content Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\admin\recruiters.js" />
     <Content Include="Scripts\global\global.js" />
+    <Content Include="Scripts\libs\jquery.html5formvalidation.js" />
     <Content Include="Scripts\libs\knockout.js" />
     <Content Include="Scripts\libs\knockout.mapping-latest.js" />
     <Content Include="Scripts\libs\bundle.txt" />
@@ -231,6 +236,10 @@
     <ProjectReference Include="..\RightRecruit.Mvc.Infrastructure\RightRecruit.Mvc.Infrastructure.csproj">
       <Project>{7D6A1D1C-867E-4A5C-BBC0-4CE223C911A5}</Project>
       <Name>RightRecruit.Mvc.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightRecruit.Services\RightRecruit.Services.csproj">
+      <Project>{B6BC87B9-723A-4DE1-AECF-21A774631F67}</Project>
+      <Name>RightRecruit.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,28 +8,22 @@
 <div class="outerCover">
         <div class="headerLabel">Create your RightRecruit Account</div>
             
-        @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
-        {
-                <div class="fieldLabel">@Html.LabelFor(p => p.CompanyName, "COMPANY NAME:")<em>*</em></div>
-                <div class="fieldInput">@Html.TextBoxFor(p => p.CompanyName, new { @id = "company" })</div>
-                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.CompanyName)</div>
+        <form data-bind="submit: Signup" method="post">
+                <div class="fieldLabel"><label>COMPANY NAME:</label><em>*</em></div>
+                <div class="fieldInput"><input id="companyName" data-bind="value: CompanyName" type="text" required placeholder="Company Name" /></div>
             
-                <div class="fieldLabel">@Html.LabelFor(p => p.AdminId, "ADMIN ID:")<em>*</em></div>
-                <div class="fieldInput">@Html.TextBoxFor(p => p.AdminId, new { @id = "adminId" })</div>
-                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.AdminId)</div>
+                <div class="fieldLabel"><label>ADMIN ID:</label><em>*</em></div>
+                <div class="fieldInput"><input id="adminId" data-bind="value: AdminId" type="text" required placeholder="adm-#####"/></div>
                 
-                <div class="fieldLabel">@Html.LabelFor(p => p.Website, "WEBSITE:")<em>*</em></div>
-                <div class="fieldInput">@Html.TextBoxFor(p => p.Website, new { @id = "website" })</div>
-                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Website, "Please provide a website")</div>
+                <div class="fieldLabel"><label>WEBSITE:</label><em>*</em></div>
+                <div class="fieldInput"><input id="website" data-bind="value: Website" type="url" required placeholder="http://www.mycompany.com"/></div>
             
-                <div class="fieldLabel">@Html.LabelFor(p => p.Email, "EMAIL:")<em>*</em></div>
-                <div class="fieldInput">@Html.TextBoxFor(p => p.Email, new { @id = "email" })</div>
-                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Email, "Please provide a email")</div>
+                <div class="fieldLabel"><label>EMAIL:</label><em>*</em></div>
+                <div class="fieldInput"><input id="email" data-bind="value: Email" type="email" required placeholder="myname@mycompany.com"/></div>
             
-                <div class="fieldLabel">@Html.LabelFor(p => p.Phone, "PHONE:")<em>*</em></div>
-                <div class="fieldInput">@Html.TextBoxFor(p => p.Phone, new { @id = "phone" })</div>
-                <div class="fieldLabelError">@Html.ValidationMessageFor(p => p.Phone, "Please provide a phone number")</div>
+                <div class="fieldLabel"><label>PHONE:</label><em>*</em></div>
+                <div class="fieldInput"><input id="phone" data-bind="value: Phone" type="tel" required placeholder="+91#########"/></div>
             
-                <div class="fieldLabel regular"><button id="next" runat="server">Create Account</button></div>
-        }
+                <div class="fieldLabel regular"><input id="signup" type="submit" value="Create Account"/></div>
+        </form>
     </div>

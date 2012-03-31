@@ -18,7 +18,6 @@ namespace RightRecruit.Web.ViewModels
         }
 
         public string Plan { get; set; }
-
         public DateTime EndDate { get; set; }
 
         public DateDto TrialEndDate
