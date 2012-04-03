@@ -7,24 +7,9 @@ namespace RightRecruit.Web.ViewModels
 {
     public class AdminRecruitersViewModel
     {
-        private string _plan;
-
-        public AdminRecruitersViewModel()
-        {
-            Recruiters = new List<RecruiterLineDto>
-                             {
-                                 new RecruiterLineDto {Name = "Test"}
-                             };
-        }
-
         public string Plan { get; set; }
         public DateTime EndDate { get; set; }
-
-        public DateDto TrialEndDate
-        {
-            get { return new DateDto {Text = DateTime.Now.AddDays(30).Date.ToString("dd-MMM-yyyy"), EndDate = DateTime.Now.AddDays(30).Date}; }
-        }
-
+        
         public IEnumerable<DateDto> MonthlyEndDates
         {
             get { return Enumerable.Range(1, 20).Select(date => new DateDto { Text = DateTime.Now.AddMonths(date).Date.ToString("dd-MMM-yyyy"), EndDate = DateTime.Now.AddMonths(date).Date }); }
@@ -50,9 +35,9 @@ namespace RightRecruit.Web.ViewModels
         {
             get
             {
-                yield return new PlanDto {Id = 1, Name = "30 day trial"};
-                yield return new PlanDto { Id = 2, Name = "Monthly" };
-                yield return new PlanDto { Id = 3, Name = "Annual" };
+                yield return new PlanDto {Value = "Trial", Name = "30 day trial"};
+                yield return new PlanDto { Value = "Monthly", Name = "Monthly" };
+                yield return new PlanDto { Value = "Annual", Name = "Annual" };
             }
         }
 

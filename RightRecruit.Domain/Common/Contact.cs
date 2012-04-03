@@ -1,6 +1,6 @@
 ﻿namespace RightRecruit.Domain.Common
 {
-    public class Contact : Entity
+    public class Contact
     {
         public string Phone { get; set; }
         public string Fax { get; set; }

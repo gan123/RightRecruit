@@ -21,26 +21,23 @@ $(function () {
         };
     } ();
 
+    $("form").html5formvalidation({
+
+    });
+
     rightrecruit.Agency.Signup = function () {
-        $("form").html5formvalidation({
-            onFail: function () {
-                alert('invalid');
+        console.log(ko.toJSON(rightrecruit.Agency));
+        $.ajax({
+            url: "signup/proceed",
+            type: "POST",
+            data: ko.toJSON(rightrecruit.Agency),
+            contentType: 'application/json',
+            beforeSend: function (jqXHR, settings) {
+                $("#overlay").show();
             },
-            onSuccess: function () {
-                console.log(ko.toJSON(rightrecruit.Agency));
-                $.ajax({
-                    url: "signup/proceed",
-                    type: "POST",
-                    data: ko.toJSON(rightrecruit.Agency),
-                    contentType: 'application/json',
-                    beforeSend: function (jqXHR, settings) {
-                        $("#overlay").show();
-                    },
-                    success: function (data, textStatus, jqXHR) {
-                        alert(textStatus);
-                        window.location = "login";
-                    }
-                });
+            success: function (data, textStatus, jqXHR) {
+                alert(textStatus);
+                window.location = "login";
             }
         });
     };

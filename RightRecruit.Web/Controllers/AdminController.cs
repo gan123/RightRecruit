@@ -12,6 +12,7 @@ using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Emailer;
+using RightRecruit.Mvc.Infrastructure.Result;
 using RightRecruit.Mvc.Infrastructure.Utility;
 using RightRecruit.Services.Plan;
 using RightRecruit.Web.Models;
@@ -72,8 +73,8 @@ namespace RightRecruit.Web.Controllers
             if (agencyPlan == null) // new
             {
                 var plan = _planFactory.CreatePlan(savePlan.Plan, currentUseId);
-                
-                agencyPlan = _planFactory.CreateAgencyPlan(plan, savePlan.EndDate, agency);
+
+                agencyPlan = _planFactory.CreateAgencyPlan(plan, plan is ThirtyDayTrialPlan ? DateTime.Now.AddDays(30).Date : savePlan.EndDate, agency);
                 foreach(var recruiterPlans in savePlan.Recruiters)
                 {
                     var recruiter = new Recruiter();
@@ -90,6 +91,7 @@ namespace RightRecruit.Web.Controllers
                     string hash;
                     new SaltedHash().GetHashAndSaltString(password, out hash, out salt);
                     recruiter.HashedPassword = new Password(password.ToByteArray(), salt.ToByteArray(), hash.ToByteArray());
+                    UnitOfWork.DocumentSession.Store(recruiter);
 
                     var recruiterProduct = new RecruiterProduct();
                     recruiterProduct.Cost = recruiterProduct.Cost;
@@ -100,7 +102,7 @@ namespace RightRecruit.Web.Controllers
                     recruiterProduct.Product = recruiterPlans.Product == "Basic" ? ProductType.Basic : recruiterPlans.Product == "Pro" ? ProductType.Pro : ProductType.Intermediate;
                     agencyPlan.RecruiterProducts.Add(recruiterProduct);
 
-                    _emailer.SendEmail(recruiter.Contact.Email, "New account", "New account created", false);
+                    _emailer.SendEmail(recruiter.Contact.Email, "New account", "New account created, username : " + recruiter.Login + ", password : " + password, false);
                 }
 
                 UnitOfWork.DocumentSession.Store(agencyPlan);

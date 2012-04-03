@@ -8,6 +8,8 @@ $(function () {
     $("#recruiters").toggleClass('menuItemClicked', true);
     $("#recruiters").children().toggleClass('menuItemAnchor', true);
 
+    var rightrecruit = {};
+
     $("#add").button({
         icons: {
             primary: 'ui-icon-person'
@@ -16,25 +18,12 @@ $(function () {
         rightrecruit.recruitersViewModel.addRecruiter();
     });
 
-    $("#proceed")
-    .button()
-    .click(function () {
-        var saveData = new rightrecruit.SaveModel();
-        saveData.plan = rightrecruit.recruitersViewModel.plan;
-        saveData.endDate = rightrecruit.recruitersViewModel.endDate;
-        saveData.recruiters = rightrecruit.recruitersViewModel.recruiters;
+    $("form").html5formvalidation({});
 
-        $.ajax({
-            url: "../admin/recruiters/save",
-            data: saveData,
-            type: "POST",
-            dataType: "json"
-        });
-    })
+    $("#proceed").button()
     .css('font-size', '9pt')
     .css('height', '23px');
 
-    var rightrecruit = {};
     $("button.delete").button({
         icons: {
             primary: 'ui-icon-trash'
@@ -44,12 +33,7 @@ $(function () {
 
     rightrecruit.SaveModel = function () {
         var plan, endDate, recuiters;
-        return {
-            plan: plan,
-            endDate: endDate,
-            recruiters: recruiters
-        }
-    } ();
+    };
 
     rightrecruit.LineItem = function () {
         var self = this;
@@ -81,18 +65,11 @@ $(function () {
             }
         }),
         endDate = ko.observable(),
-        trialEndDate = ko.observable(),
         showEndDates = ko.computed(function () {
             if (plan() == "Monthly" || plan() == "Annual") {
                 return true;
             }
             return false;
-        }),
-        hideEndDates = ko.computed(function () {
-            if (showEndDates()) {
-                return false;
-            }
-            return true;
         }),
         grandTotal = ko.computed(function () {
             var total = 0;
@@ -120,11 +97,31 @@ $(function () {
             annualEndDates: annualEndDates,
             endDates: endDates,
             endDate: endDate,
-            showEndDates: showEndDates,
-            hideEndDates: hideEndDates,
-            trialEndDate: trialEndDate
+            showEndDates: showEndDates
         }
     } ();
+
+    rightrecruit.recruitersViewModel.proceed = function () {
+        console.log('inside proceed');
+        var saveData = new rightrecruit.SaveModel();
+        saveData.plan = rightrecruit.recruitersViewModel.plan;
+        saveData.endDate = rightrecruit.recruitersViewModel.endDate;
+        saveData.recruiters = rightrecruit.recruitersViewModel.recruiters;
+        console.log(saveData);
+        console.log(ko.toJSON(saveData));
+        $.ajax({
+            url: "../admin/recruiters/save",
+            type: "POST",
+            data: ko.toJSON(saveData),
+            contentType: 'application/json',
+            beforeSend: function (jqXHR, settings) {
+                $("#overlay").show();
+            },
+            success: function () {
+                $("#overlay").hide();
+            }
+        });
+    };
 
     var url = "../admin/recruiters/load";
     $.getJSON(
@@ -136,17 +133,21 @@ $(function () {
         rightrecruit.recruitersViewModel.products(data.Products);
         rightrecruit.recruitersViewModel.monthlyEndDates(data.MonthlyEndDates);
         rightrecruit.recruitersViewModel.annualEndDates(data.AnnualEndDates);
-        rightrecruit.recruitersViewModel.trialEndDate(data.TrialEndDate);
-        console.log(rightrecruit.recruitersViewModel.trialEndDate().Text);
-        $.each(data.Recruiters, function (i, p) {
-            rightrecruit.recruitersViewModel.recruiters.push(new rightrecruit.LineItem()
+        console.log('recruiters ' + data.Recruiters);
+        if (data.Recruiters == null) {
+            rightrecruit.recruitersViewModel.addRecruiter();
+        }
+        else {
+            $.each(data.Recruiters, function (i, p) {
+                rightrecruit.recruitersViewModel.recruiters.push(new rightrecruit.LineItem()
                 .id(p.Id)
                 .name(p.Name)
                 .email(p.Email)
                 .product(p.Product)
                 .role(p.Role)
             );
-        });
+            });
+        }
     });
 
     ko.applyBindings(rightrecruit.recruitersViewModel);

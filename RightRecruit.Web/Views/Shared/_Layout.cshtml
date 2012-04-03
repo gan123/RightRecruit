@@ -13,13 +13,14 @@
 <body>
     @Cassette.Views.Bundles.RenderScripts()
     <div class="mainHeader">
-        <a class="link right" href="/rr/signup">Sign up</a>
+        <a class="link right" href="signup">Sign up</a>
     </div>
     @if (HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser] != null)
     {
         var user = (RightRecruit.Domain.User.User)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser];
         <div id="menuDiv" class="menuBackground">
             <ul class="menuBase">
+                <li class="cornermenuitem"></li>
                 @if (user is RightRecruit.Domain.User.AgencyAdmin)
                 {
                     <li id="recruiters" class="menuItem"><a class="menuItemAnchor" href="#">Recruiters</a></li>

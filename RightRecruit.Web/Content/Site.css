@@ -1,29 +1,9 @@
 ﻿@charset "utf-8";
 
-@font-face
-{
-    font-family: CandelaBold;
-    src: url(../fonts/CandelaBold-webfont.woff);
-}
-@font-face
-{
-    font-family: CandelaBook;
-    src: url(../fonts/CandelaBook-webfont.woff);
-}
-@font-face
-{
-    font-family: GudeaBold;
-    src: url(../fonts/Gudea-Bold-webfont.woff);
-}
-@font-face
-{
-    font-family: Gudea;
-    src: url(../fonts/Gudea-Regular-webfont.woff);
-}
-
 body
 {
-    font-family: Gudea;
+    font-family: Arial;
+    font-size: 10pt;
     color: #232323;
     background:url(globals/icons/header-bg.png) repeat-x;
     margin:0px;
@@ -164,7 +144,7 @@ textarea
 
 .loginTitle {
 	font-size : 20pt;
-	font-family: GudeaBold;
+	font-family: Arial;
 	text-align: left;
 	margin: 20px 10px 25px 15px;
 }
@@ -187,7 +167,7 @@ textarea
 {
     color: #ffffff;
     font-size: 12px;
-    font-family: GudeaBold;
+    font-family: Arial;
     text-align: center;
     vertical-align: middle;
     padding-top: 3px;
@@ -212,7 +192,7 @@ textarea
     background: #00b4ff;
     color: #ffffff;
     font-size: 36px;
-    font-family: GudeaBold;
+    font-family: Arial;
     text-align: left;
     vertical-align: middle;
     padding-top: 10px;
@@ -221,30 +201,22 @@ textarea
 
 .menuBackground
 {
-    background-image: linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -o-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -moz-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -webkit-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -ms-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.26, rgb(0,135,189)),
-	color-stop(0.77, rgb(0,179,255)),
-	color-stop(0.82, rgb(0,179,255))
-);
+    background: #00b4ff;
     height: 30px;
+}
+
+.menu {
+	background: #00b4ff;
 }
 
 .menuBase {
     width:auto;
-    font-size: 12pt;
+    font-size: 10pt;
     list-style:none; 
-    font-family: GudeaBold;
+    font-family: Arial;
     padding: 0px;
     margin: 0px;
+    font-weight: bold;
 }
 
 .menuItem
@@ -253,84 +225,59 @@ background-image: -webkit-gradient(
     float:left;  
     height: 30px; 
     vertical-align: middle;
-    background-image: linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -o-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -moz-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -webkit-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
-background-image: -ms-linear-gradient(bottom, rgb(0,135,189) 26%, rgb(0,179,255) 77%, rgb(0,179,255) 82%);
+    text-align: center;
+    font-size: inherit;
+    background: #00b4ff;
+    color:#fff;  
+}
 
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.26, rgb(0,135,189)),
-	color-stop(0.77, rgb(0,179,255)),
-	color-stop(0.82, rgb(0,179,255))
-); 
+.cornermenuitem
+{
+    position: relative;
+    float:left;  
+    height: 30px; 
+    width: 10px;
+    vertical-align: middle;
+    font-size: inherit;
+    background: #00b4ff;
     color:#fff;  
 }
 
 .menuItemClicked
 {
     position: relative;
+    font-size: inherit;
     float:left;  
     height: 30px; 
     vertical-align: middle;
     color:#000; 
-    background-image: linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -o-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -moz-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -webkit-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -ms-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.2, rgb(199,199,199)),
-	color-stop(0.6, rgb(231,231,231)),
-	color-stop(0.8, rgb(231,231,231))
-);
+    background : #f7f7f7;
 }
 
 .menuItemClickedAnchor {
      padding: 15px 10px 0px 10px;
     color: inherit;
-    margin: 4px;
+    margin: 10px 4px 4px 4px;
     text-decoration:none;
     vertical-align: middle;
     height: 30px;  
 }
 
-.menuItemAnchor {
-    padding: 15px 10px 0px 10px;
+.menuItemAnchor 
+{
+    top: 25%;
+    padding: 10px;
     margin: 4px;
     color: inherit;
+    text-align: center;
     text-decoration:none;
-    vertical-align: middle;
-    height: 30px;  
+    vertical-align: bottom;
+    position: relative;
 }
 
 .menuItem:hover {
-    background-image: linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -o-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -moz-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -webkit-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-background-image: -ms-linear-gradient(bottom, rgb(199,199,199) 20%, rgb(231,231,231) 60%, rgb(231,231,231) 80%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.2, rgb(199,199,199)),
-	color-stop(0.6, rgb(231,231,231)),
-	color-stop(0.8, rgb(231,231,231))
-);
+    background : rgb(231,231,231);
     color:#000;
-}
-
-.menu {
-	background: #00b4ff;
 }
 
 .fieldLabel
@@ -339,12 +286,10 @@ background-image: -webkit-gradient(
     top: 100%;
     text-align:left;
     margin:16px 4px 2px 16px;
-    font-size: 14px;
-    font-family: GudeaBold;
+    font-family: Arial;
 }
 
 .regular {
-	font-size: 12px;
 	margin:16px 4px 8px 16px;
 }
 
@@ -354,8 +299,7 @@ background-image: -webkit-gradient(
     top: 100%;
     text-align:left;
     margin:2px 2px 2px 16px;
-    font-size: 16px;
-    font-family: GudeaBold;
+    font-family: Arial;
 }
 
 .fieldInput input {
@@ -364,9 +308,8 @@ background-image: -webkit-gradient(
   border: lightGray solid 1px;
   height: 30px;
   width: 90%;
-  font-size: 16px;
   padding: 2px;
-  font-family: Gudea;
+  font-family: Arial;
   text-align: left;
   position: relative;
   display: block;
@@ -380,9 +323,8 @@ background-image: -webkit-gradient(
   border: lightGray solid 1px;
   height: 20px;
   width: 90%;
-  font-size: 12px;
   padding: 2px;
-  font-family: Gudea;
+  font-family: Arial;
   text-align: left;
   position: relative;
   display: block;
@@ -397,7 +339,6 @@ background-image: -webkit-gradient(
 
 .field-validation-error
 {
-    font-size:12px;
     margin-top: -5px;
 }
 
@@ -418,7 +359,7 @@ em
 	font-size: 10pt;
 	margin: 4px 4px 4px 12px;
 	text-decoration: none;
-	font-family: GudeaBold;
+	font-family: Arial;
 	text-align: left;
 	float: left;
 	color: #515151;
@@ -435,8 +376,7 @@ em
     top: 100%;
     text-align:left;
     margin:50px 4px 2px 10px;
-    font-size: 14px;
-    font-family: GudeaBold;
+    font-family: Arial;
     width: 90%;
     height: 1px;
     background: #bdbdbd;
@@ -450,7 +390,7 @@ em
     margin:18px 4px 2px 10px;
     font-size: 20pt;
     color: #bdbdbd;
-    font-family: GudeaBold;
+    font-family: Arial;
 }
 
 .learnMorenSignup 
@@ -459,9 +399,8 @@ em
     top: 100%;
     text-align:left;
     margin:4px 4px 12px 10px;
-    font-size: 12pt;
     color: #bdbdbd;
-    font-family: GudeaBold;
+    font-family: Arial;
 }
 
 .learn {
@@ -563,7 +502,7 @@ em
 {
     text-align: center;
     height: 40px;
-    font-family: GudeaBold;
+    font-family: Arial;
     font-size: 30px;
 }
 
@@ -749,7 +688,7 @@ em
     text-align:left;
     margin: 16px 16px 40px 16px;
     font-size: 20px;
-    font-family: GudeaBold;
+    font-family: Arial;
 }
 
 select
@@ -757,7 +696,7 @@ select
     border: 1px solid #e7e7e7;
     height: 25px;
     margin: 8px 0px 0px 0px;
-    font-family: Gudea;
+    font-family: Arial;
     font-size: 10pt;
     -webkit-border-radius: 4px;
   -moz-border-radius: 8px;
@@ -774,8 +713,7 @@ select:focus
 .cost
 {
     margin: 0px 0px 0px 2px;
-    font-family: GudeaBold;
-    font-size: 12pt;
+    font-family: Arial;
     text-align: center;
 }
 

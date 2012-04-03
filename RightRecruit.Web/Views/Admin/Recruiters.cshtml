@@ -3,25 +3,21 @@
     Cassette.Views.Bundles.Reference("Scripts/admin");
     
 }
-
-@using (Html.BeginForm())
-{
+<form data-bind="submit: proceed" method="post">
 <div class="outerRing">
     <table>
         <tr>
             <td>
-                <select data-bind="options: plans, value: plan, optionsText: 'Name', optionsValue: 'Name'">
+                <select data-bind="options: plans, value: plan, optionsText: 'Name', optionsValue: 'Value'">
                 </select>
             </td>
-            <td >
+            <td>
                 <select data-bind="options: endDates, value: endDate, optionsText: 'Text', optionsValue: 'EndDate', visible: showEndDates">
                 </select>
             </td>
-             <td style="padding: 10px 0px 0px 4px;">
-                    <span class="cost" data-bind="text: Text, data: trialEndDate(), visible: hideEndDates"></span>
-                </td>
             <td style="padding: 10px 0px 0px 4px;">
-                <button id="add">Add Recruiter</button>
+                <button id="add">
+                    Add Recruiter</button>
             </td>
         </tr>
     </table>
@@ -58,15 +54,18 @@
     <table>
         <tr>
             <td>
-                <div class="fieldLabel">Total</div>
+                <div class="fieldLabel">
+                    Total</div>
             </td>
             <td>
-                <div class="fieldLabel">INR <span data-bind="text: grandTotal"></span></div>
+                <div class="fieldLabel">
+                    INR <span data-bind="text: grandTotal"></span>
+                </div>
             </td>
             <td style="padding: 10px 0px 0px 4px;">
-                <input id="proceed" type="submit" value="Proceed" />
+                <input id="proceed" type="submit" value="Proceed"/>
             </td>
         </tr>
     </table>
 </div>
-}
+</form>

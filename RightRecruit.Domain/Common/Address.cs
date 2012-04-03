@@ -1,8 +1,6 @@
-﻿using RightRecruit.Domain.Plan;
-
-namespace RightRecruit.Domain.Common
+﻿namespace RightRecruit.Domain.Common
 {
-    public class Address : Entity
+    public class Address
     {
         public string Street1 { get; set; }
         public string Street2 { get; set; }
@@ -12,7 +10,7 @@ namespace RightRecruit.Domain.Common
         public Country Country { get; set; }
     }
 
-    public class Amount : Entity
+    public class Amount
     {
         public double Value { get; set; }
         public Currency Currency { get; set; }
