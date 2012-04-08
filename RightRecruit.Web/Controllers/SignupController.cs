@@ -5,17 +5,27 @@ using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Emailer;
 using RightRecruit.Mvc.Infrastructure.Utility;
+using RightRecruit.Raven.Database;
+using RightRecruit.Services.Password;
 using RightRecruit.Web.Models;
+using Password = RightRecruit.Domain.User.Password;
 
 namespace RightRecruit.Web.Controllers
 {
     public class SignupController : AbstractController
     {
         private readonly IEmailer _emailer;
+        private readonly IPassword _password;
+        private readonly IDatabase _database;
 
-        public SignupController(IEmailer emailer)
+        public SignupController(
+            IEmailer emailer,
+            IPassword password,
+            IDatabase database)
         {
             _emailer = emailer;
+            _password = password;
+            _database = database;
         }
 
         [HttpGet]
@@ -36,20 +46,17 @@ namespace RightRecruit.Web.Controllers
                 newAgency.Contact = contact;
                 UnitOfWork.DocumentSession.Store(newAgency);
 
+                var generatedPassword = _password.Generate();
                 var adminUser = new AgencyAdmin();
                 adminUser.Name = agency.AdminId;
                 adminUser.Contact = newAgency.Contact;
                 adminUser.Address = newAgency.Address;
                 adminUser.Login = agency.AdminId;
-                var password = RandomPassword.Generate(8);
-                string salt;
-                string hash;
-                new SaltedHash().GetHashAndSaltString(password, out hash, out salt);
-                adminUser.HashedPassword = new Password(password.ToByteArray(), salt.ToByteArray(), hash.ToByteArray());
+                adminUser.HashedPassword = generatedPassword.Password;
                 adminUser.Agency = newAgency;
                 UnitOfWork.DocumentSession.Store(adminUser);
 
-                _emailer.SendEmail(agency.Email, "Account", "username : " + adminUser.Name + ", password: " + password, false);
+                _emailer.SendEmail(agency.Email, "Account", "username : " + adminUser.Name + ", password: " + generatedPassword.ActualPassword, false);
 
                 return new EmptyResult();
             }

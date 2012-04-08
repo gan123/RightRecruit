@@ -78,6 +78,35 @@ namespace RightRecruit.Web
               "admin/recruiters/save", // URL with parameters
               new { controller = "Admin", action = "Save" } // Parameter defaults
           );
+
+            routes.MapRoute(
+              "RecruiterDashboard", // Route name
+              "recruiter/dashboard", // URL with parameters
+              new { controller = "Recruiter", action = "Dashboard" } // Parameter defaults
+          );
+
+            routes.MapRoute(
+              "RecruiterInbox", // Route name
+              "recruiter/inbox", // URL with parameters
+              new { controller = "Recruiter", action = "Inbox" } // Parameter defaults
+          );
+
+            routes.MapRoute(
+             "Clients", // Route name
+             "recruiter/clients", // URL with parameters
+             new { controller = "Clients", action = "Clients" } // Parameter defaults
+         );
+            routes.MapRoute(
+             "NewClient", // Route name
+             "client/create", // URL with parameters
+             new { controller = "Clients", action = "New" } // Parameter defaults
+         );
+
+            routes.MapRoute(
+             "SaveClient", // Route name
+             "client/save", // URL with parameters
+             new { controller = "Clients", action = "Save" } // Parameter defaults
+         );
         }
 
         protected void Application_Start()

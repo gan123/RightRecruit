@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightRecruit.TestGround", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightRecruit.Services", "RightRecruit.Services\RightRecruit.Services.csproj", "{B6BC87B9-723A-4DE1-AECF-21A774631F67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightRecruit.Raven", "RightRecruit.Raven\RightRecruit.Raven.csproj", "{3409E802-7EC7-45E7-BB1D-D3497BEC1980}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,16 @@ Global
 		{B6BC87B9-723A-4DE1-AECF-21A774631F67}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B6BC87B9-723A-4DE1-AECF-21A774631F67}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6BC87B9-723A-4DE1-AECF-21A774631F67}.Release|x86.ActiveCfg = Release|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3409E802-7EC7-45E7-BB1D-D3497BEC1980}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -260,7 +260,7 @@ textarea
     margin: 10px 4px 4px 4px;
     text-decoration:none;
     vertical-align: middle;
-    height: 30px;  
+    height: 30px; 
 }
 
 .menuItemAnchor 
@@ -723,4 +723,53 @@ input:invalid
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     outline: none;
+}
+
+.clientsearch {
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    height: 23px;
+    width: 650px;
+    border: 0px solid #e7e7e7;
+}
+
+.clientSearchBoder 
+{
+    border: 1px solid #e7e7e7;
+    margin: 5px;
+}
+
+.clientrowonediv {
+	margin: 10px;
+}
+
+.toolbar {
+	margin: 0px 5px 5px 5px;
+}
+
+.newclienttable 
+{
+    margin: 5%;
+}
+
+.fieldName 
+{
+    font-weight: bold;
+    margin: 4px 16px 4px 4px;
+}
+   
+input {
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    height: 23px;
+    padding: 2px;
+}
+
+input:valid 
+{
+    border: 1px solid #e7e7e7;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    height: 23px;
+    padding: 2px;
 }

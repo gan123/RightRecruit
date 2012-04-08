@@ -9,5 +9,6 @@ namespace RightRecruit.Domain.Agency
         public Contact Contact { get; set; }
         public Address Address { get; set; }
         public List<DenormalizedReference<AgencyEarnings>> Earnings { get; set; }
+        public string Database { get; set; }
     }
 }

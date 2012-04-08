@@ -18,7 +18,6 @@ namespace RightRecruit.Web.Installers
                 Component.For<IControllerActivator>().ImplementedBy<ControllerActivator>(),
                 Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>(),
                 Component.For<ICurrentUserProvider>().ImplementedBy<CurrentUserProvider>(),
-                Component.For<IEmailer>().ImplementedBy<Emailer>(),
                 Component.For<HttpSessionStateBase>().LifeStyle.PerWebRequest
                 .UsingFactoryMethod(() => new HttpSessionStateWrapper(HttpContext.Current.Session)));
         }

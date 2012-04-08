@@ -40,13 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Password\IPassword.cs" />
+    <Compile Include="Password\Password.cs" />
     <Compile Include="Plan\IPlanFactory.cs" />
+    <Compile Include="Product\IProductFactory.cs" />
+    <Compile Include="Product\ProductFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RightRecruit.Domain\RightRecruit.Domain.csproj">
       <Project>{20371D40-B7E5-4545-AC49-37FE5DCE0A9E}</Project>
       <Name>RightRecruit.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightRecruit.Mvc.Infrastructure\RightRecruit.Mvc.Infrastructure.csproj">
+      <Project>{7D6A1D1C-867E-4A5C-BBC0-4CE223C911A5}</Project>
+      <Name>RightRecruit.Mvc.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Clients";
+}
+<div class="clientrowonediv">
+                <div class="clientSearchBoder left">
+                    <input type="text" id="clientSearch" class="clientsearch" placeholder="Type to search clients" />
+                </div>
+                @if (((RightRecruit.Domain.User.Recruiter)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser]).IsTeamLead)
+                {
+                    <div class="toolbar right">
+                        <a id="addClient" href="/rr/client/create">Add Client</a>
+                    </div>
+                }
+            </div>
+<script src="@Url.Content("~/Scripts/client/clients.js")" type="text/javascript"></script>

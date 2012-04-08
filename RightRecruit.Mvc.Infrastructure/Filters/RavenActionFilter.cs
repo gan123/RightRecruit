@@ -2,11 +2,13 @@
 using System.Web.Mvc;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
 using Raven.Client.MvcIntegration;
 using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Listeners;
+using RightRecruit.Raven.Indexes;
 
 namespace RightRecruit.Mvc.Infrastructure.Filters
 {
@@ -34,8 +36,11 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
 
             DocumentStore.Initialize();
             DocumentStore.Conventions.SaveEnumsAsIntegers = true;
-            
+
+            IndexCreation.CreateIndexes(typeof(ClientsIndex).Assembly, DocumentStore);
             RavenProfiler.InitializeFor(DocumentStore);
+
+            
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

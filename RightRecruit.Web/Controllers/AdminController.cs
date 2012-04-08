@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Web.Mvc;
 using Raven.Client.Linq;
-using RightRecruit.Domain;
 using RightRecruit.Domain.Agency;
 using RightRecruit.Domain.Common;
 using RightRecruit.Domain.Plan;
@@ -12,9 +10,9 @@ using RightRecruit.Domain.User;
 using RightRecruit.Mvc.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Emailer;
-using RightRecruit.Mvc.Infrastructure.Result;
-using RightRecruit.Mvc.Infrastructure.Utility;
+using RightRecruit.Services.Password;
 using RightRecruit.Services.Plan;
+using RightRecruit.Services.Product;
 using RightRecruit.Web.Models;
 using RightRecruit.Web.ViewModels;
 
@@ -24,13 +22,19 @@ namespace RightRecruit.Web.Controllers
     {
         private readonly IEmailer _emailer;
         private readonly IPlanFactory _planFactory;
+        private readonly IPassword _password;
+        private readonly IProductFactory _productFactory;
 
         public AdminController(
             IEmailer emailer,
-            IPlanFactory planFactory)
+            IPlanFactory planFactory,
+            IPassword password,
+            IProductFactory productFactory)
         {
             _emailer = emailer;
             _planFactory = planFactory;
+            _password = password;
+            _productFactory = productFactory;
         }
 
         public ActionResult Recruiters()
@@ -73,36 +77,32 @@ namespace RightRecruit.Web.Controllers
             if (agencyPlan == null) // new
             {
                 var plan = _planFactory.CreatePlan(savePlan.Plan, currentUseId);
-
-                agencyPlan = _planFactory.CreateAgencyPlan(plan, plan is ThirtyDayTrialPlan ? DateTime.Now.AddDays(30).Date : savePlan.EndDate, agency);
+                var endDate = plan is ThirtyDayTrialPlan ? DateTime.Now.AddDays(30).Date : savePlan.EndDate;
+                agencyPlan = _planFactory.CreateAgencyPlan(plan, endDate, agency);
                 foreach(var recruiterPlans in savePlan.Recruiters)
                 {
-                    var recruiter = new Recruiter();
-                    recruiter.Agency = agency;
-                    recruiter.CreatedDate = DateTime.Now;
-                    recruiter.IsManager = recruiterPlans.Role == "Manager";
-                    recruiter.IsTeamLead = recruiterPlans.Role == "Team Lead";
-                    recruiter.IsWorkingFromHome = recruiterPlans.Role == "Contract";
-                    recruiter.Login = recruiterPlans.Name.Split(' ')[0];
-                    recruiter.Name = recruiterPlans.Name;
-                    recruiter.Contact = new Contact {Email = recruiterPlans.Email};
-                    var password = RandomPassword.Generate(8);
-                    string salt;
-                    string hash;
-                    new SaltedHash().GetHashAndSaltString(password, out hash, out salt);
-                    recruiter.HashedPassword = new Password(password.ToByteArray(), salt.ToByteArray(), hash.ToByteArray());
+                    var generatedPassword = _password.Generate();
+                    var recruiter = new Recruiter
+                                        {
+                                            Agency = agency,
+                                            IsManager = recruiterPlans.Role == "Manager",
+                                            IsTeamLead = recruiterPlans.Role == "Team Lead",
+                                            IsWorkingFromHome = recruiterPlans.Role == "Contract",
+                                            Login = recruiterPlans.Name.Split(' ')[0],
+                                            Name = recruiterPlans.Name,
+                                            Contact = new Contact {Email = recruiterPlans.Email},
+                                            HashedPassword = generatedPassword.Password
+                                        };
                     UnitOfWork.DocumentSession.Store(recruiter);
 
                     var recruiterProduct = new RecruiterProduct();
                     recruiterProduct.Cost = recruiterProduct.Cost;
-                    recruiterProduct.CreatedDate = DateTime.Now;
-                    recruiterProduct.EndDate = savePlan.EndDate;
-                    recruiterProduct.LastUpdatedDate = DateTime.Now;
+                    recruiterProduct.EndDate = endDate;
                     recruiterProduct.LastUpdatedUserId = currentUseId;
-                    recruiterProduct.Product = recruiterPlans.Product == "Basic" ? ProductType.Basic : recruiterPlans.Product == "Pro" ? ProductType.Pro : ProductType.Intermediate;
+                    recruiterProduct.Product = _productFactory.Get(recruiterPlans.Product);
                     agencyPlan.RecruiterProducts.Add(recruiterProduct);
 
-                    _emailer.SendEmail(recruiter.Contact.Email, "New account", "New account created, username : " + recruiter.Login + ", password : " + password, false);
+                    _emailer.SendEmail(recruiter.Contact.Email, "New account", "New account created, username : " + recruiter.Login + ", password : " + generatedPassword.ActualPassword, false);
                 }
 
                 UnitOfWork.DocumentSession.Store(agencyPlan);

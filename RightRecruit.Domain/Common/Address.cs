@@ -8,6 +8,11 @@
         public string PinCode { get; set; }
         public State State { get; set; }
         public Country Country { get; set; }
+
+        public override string ToString()
+        {
+            return Street1 + " " + Street2 + " " + Street3 + " " + State.Name + " " + Country.Name;
+        }
     }
 
     public class Amount

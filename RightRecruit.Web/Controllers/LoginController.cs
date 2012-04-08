@@ -40,13 +40,18 @@ namespace RightRecruit.Web.Controllers
                         if (user is AgencyAdmin || user is Recruiter)
                         {
                             if (user is AgencyAdmin)
+                            {
                                 HttpContext.Session[Globals.Agency] = ((AgencyAdmin) user).Agency.Id;
+                                return RedirectToAction("Recruiters", "Admin");
+                            }
                             if (user is Recruiter)
+                            {
                                 HttpContext.Session[Globals.Agency] = ((Recruiter)user).Agency.Id;
+                                return RedirectToAction("Inbox", "Recruiter");
+                            }
                         }
                         // TODO : cookie implementation
                         //if (login.RememberMe)
-                        return RedirectToAction("Recruiters", "Admin");
                     }
                 }
             }
